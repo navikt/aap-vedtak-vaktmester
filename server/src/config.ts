@@ -4,7 +4,7 @@ const DEVTOOLS_API_AUDIENCE = process.env.DEVTOOLS_API_AUDIENCE || 'localhost:de
 const DEVTOOLS_API_SCOPE = process.env.DEVTOOLS_API_SCOPE || 'api://localhost.devtools/.default'
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
-  BASE_PATH: '/aap-behandling',
+  BASE_PATH: '/aap-vaktmester',
   APP_URL,
   DEVTOOLS_API_URL,
   DEVTOOLS_API_AUDIENCE,
