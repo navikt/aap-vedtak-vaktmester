@@ -1,0 +1,22 @@
+# dependencies
+/node_modules
+/server/node_modules
+
+# testing
+/coverage
+/server/coverage
+/cypress/videos
+
+# production
+/dist
+/server/dist
+
+#IDE
+.idea/
+.vscode/
+
+# parcel
+.parcel-cache
+
+yarn-error.log
+server/yarn-error.log

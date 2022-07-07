@@ -1,0 +1,11 @@
+ingresses:
+  - "https://aap-vaktmester.dev.intern.nav.no"
+env:
+  - name: APP_URL
+    value: "https://aap-vaktmester.dev.intern.nav.no"
+  - name: DEVTOOLS_API_URL
+    value: "http://aap-devtools"
+  - name: DEVTOOLS_API_AUDIENCE
+    value: "dev-gcp:aap:devtools"
+  - name: DEVTOOLS_API_SCOPE
+    value: "api://dev-gcp.aap.devtools/.default"
