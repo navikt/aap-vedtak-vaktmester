@@ -58,7 +58,7 @@ const Search = () => {
         <div className={"blokk timestamp"}>Sist søkt: {sistOppdatert}</div>
       </div>
       <div className={"resultat"}>
-        <TopicResult searchResult={data} />
+        <TopicResult searchResult={data} isLoading={isLoading} />
       </div>
     </main>
   );

@@ -87,7 +87,7 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(soekereResponse.reverse()), ctx.delay(250));
   }),
   rest.get("/aap-vaktmester/api/topic/soeknader.api.v1/latest", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(soeknaderResponse), ctx.delay(250));
+    return res(ctx.status(200), ctx.json(soeknaderResponse), ctx.delay(1200));
   }),
   rest.get("/aap-vaktmester/api/topic/soeknader.api.v1/earliest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soeknaderResponse.reverse()), ctx.delay(250));

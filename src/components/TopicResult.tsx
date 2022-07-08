@@ -1,10 +1,11 @@
 import { TopicResponse } from "../types/TopicResponse";
-import { Table } from "@navikt/ds-react";
+import { Loader, Table } from "@navikt/ds-react";
 import { format } from "date-fns";
 import { Buffer } from "buffer";
 
 type TopicResultProps = {
   searchResult: TopicResponse[] | undefined;
+  isLoading: boolean;
 };
 
 const Rad = ({ data }: { data: TopicResponse }) => {
@@ -33,7 +34,11 @@ const Rad = ({ data }: { data: TopicResponse }) => {
   );
 };
 
-const TopicResult = ({ searchResult }: TopicResultProps) => {
+const TopicResult = ({ searchResult, isLoading }: TopicResultProps) => {
+  if (isLoading) {
+    return <Loader size={"2xlarge"} />;
+  }
+
   return (
     <Table>
       <Table.Header>
@@ -49,7 +54,7 @@ const TopicResult = ({ searchResult }: TopicResultProps) => {
       <Table.Body>
         {!searchResult && (
           <Table.Row>
-            <Table.DataCell colSpan={5}>Ingen ting her enda...</Table.DataCell>
+            <Table.DataCell colSpan={6}>Ingen ting her enda...</Table.DataCell>
           </Table.Row>
         )}
         {searchResult &&
