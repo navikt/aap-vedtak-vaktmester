@@ -2,8 +2,10 @@ import { useQuery } from "react-query";
 import { Loader } from "@navikt/ds-react";
 
 const Topics = () => {
-  const { isLoading, error, data } = useQuery("saker", () =>
-    fetch("/aap-vaktmester/api/topics").then((res) => res.json())
+  const { isLoading, error, data } = useQuery(
+    "saker",
+    () => fetch("/aap-vaktmester/api/topics").then((res) => res.json()),
+    { refetchOnWindowFocus: false }
   );
 
   if (isLoading) {
