@@ -23,7 +23,6 @@ const Topics = ({ velgTopic }: TopicsProps) => {
   );
 
   const handleChange = (event: React.FormEvent) => {
-    console.log((event.target as HTMLInputElement).value);
     velgTopic((event.target as HTMLInputElement).value);
   };
 
