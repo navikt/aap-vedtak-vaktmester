@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.appContainer {
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  max-width: 80vw;
+}
