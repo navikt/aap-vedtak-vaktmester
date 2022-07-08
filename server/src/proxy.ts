@@ -1,13 +1,10 @@
-import { Application, Request } from "express";
+import { Application } from "express";
 import proxy from "express-http-proxy";
 import { LogError } from "./logger";
 import { IncomingMessage } from "http";
 
 const options = () => ({
   parseReqBody: true,
-  proxyReqPathResolver: (req: Request) => {
-    return req.originalUrl.startsWith("/aap-vaktmester/api") ? req.originalUrl.slice(15) : req.originalUrl;
-  },
   userResDecorator: function (proxyRes: IncomingMessage, proxyResData: any) {
     if (proxyRes.statusCode > 299) {
       let resData = {};
