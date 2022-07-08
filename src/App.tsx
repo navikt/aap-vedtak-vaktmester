@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import "@navikt/ds-css";
-import { Topics } from "./Topics";
 import { Heading } from "@navikt/ds-react";
+import { Search } from "./components/Search";
 
 const queryClient = new QueryClient();
 
@@ -12,7 +12,7 @@ function App() {
         AAP Vedtak Vaktmester
       </Heading>
       <QueryClientProvider client={queryClient}>
-        <Topics />
+        <Search />
       </QueryClientProvider>
     </div>
   );

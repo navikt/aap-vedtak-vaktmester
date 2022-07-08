@@ -16,5 +16,34 @@ code {
   display: grid;
   place-items: center;
   margin: 0 auto;
-  max-width: 80vw;
+
+}
+
+.appContainer > main {
+  display: flex;
+  flex-direction: row;
+
+  min-width: 100%;
+}
+
+.søkelinje {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+
+  padding: 1rem;
+}
+
+.resultat {
+  width: 100%;
+  padding-inline: 1rem;
+}
+
+.blokk:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  font-weight: 200;
 }
