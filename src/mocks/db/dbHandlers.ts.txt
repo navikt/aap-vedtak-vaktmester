@@ -1,0 +1,19 @@
+import { rest } from "msw";
+import { fakeDB } from "./db";
+
+const { saker, slett, antallRader } = fakeDB();
+
+export const handlers = [
+  rest.get("/saker", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(saker.søkere), ctx.delay(340));
+  }),
+  rest.post("/slett/:id", (req, res, ctx) => {
+    const fnr = req.params.id as string;
+
+    if (antallRader(fnr) === 0) {
+      return res(ctx.status(404), ctx.delay(1230));
+    }
+    slett(fnr);
+    return res(ctx.status(200), ctx.delay(1230));
+  }),
+];

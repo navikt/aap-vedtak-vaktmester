@@ -1,0 +1,180 @@
+import { factory, primaryKey, manyOf } from "@mswjs/data";
+
+export const fakeDB = () => {
+  const db = factory({
+    saker: {
+      id: primaryKey(String),
+      søkere: manyOf("søker"),
+    },
+    søker: {
+      personident: primaryKey(String),
+      fødselsdato: String,
+      skjermet: Boolean,
+      navn: String,
+      sak: {
+        saksid: String,
+        søknadstidspunkt: String,
+        vedtak: {
+          innvilget: Boolean,
+          vedtaksdato: String,
+          virkningsdato: String,
+        },
+        type: String, // 11-5, SP-erstattning, Student, Uføre
+        aktiv: Boolean,
+        paragraf_11_2: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_3: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_4: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_5: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_6: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_12: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_19: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+        paragraf_11_29: {
+          vilkårsvurderingsid: String,
+          utfall: String,
+          autorisasjon: String,
+        },
+      },
+    },
+  });
+  const søkere = [
+    db.søker.create({
+      personident: "11068812345",
+      fødselsdato: "2000-01-01",
+      skjermet: false,
+      navn: "Klatrende Eføy",
+      sak: {
+        saksid: "uuid-1-2",
+        søknadstidspunkt: "2022-06-30",
+        type: "11-5",
+        aktiv: true,
+        paragraf_11_2: {
+          vilkårsvurderingsid: "uuid-1-2",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_3: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_4: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "OPPFYLT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_5: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_6: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_12: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_19: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        paragraf_11_29: {
+          vilkårsvurderingsid: "uuid-1-3",
+          utfall: "IKKE_VURDERT",
+          autorisasjon: "LESE",
+        },
+        vedtak: {
+          innvilget: true,
+          vedtaksdato: "2022-06-05",
+          virkningsdato: "2022-05-05",
+        },
+      },
+    }),
+    db.søker.create({
+      personident: "01090200432",
+      fødselsdato: "2000-01-01",
+      skjermet: false,
+      navn: "Klatrende Eføy",
+      sak: {
+        saksid: "uuid-1-2",
+        søknadstidspunkt: "2022-06-30",
+        type: "11-5",
+        aktiv: true,
+        vedtak: {
+          innvilget: false,
+          vedtaksdato: "2022-06-05",
+          virkningsdato: "2022-05-05",
+        },
+      },
+    }),
+    db.søker.create({
+      personident: "27109500123",
+      fødselsdato: "2000-01-01",
+      skjermet: false,
+      navn: "Klatrende Eføy",
+      sak: {
+        saksid: "uuid-1-2",
+        søknadstidspunkt: "2022-06-30",
+        type: "11-5",
+        aktiv: true,
+      },
+    }),
+  ];
+
+  const antallRader = (input: string) =>
+    db.saker.count({
+      where: {
+        søkere: {
+          personident: {
+            equals: input,
+          },
+        },
+      },
+    });
+
+  const slett = (input: string) => {
+    db.søker.delete({
+      where: {
+        personident: {
+          equals: input,
+        },
+      },
+    });
+  };
+
+  const saker = db.saker.create({ id: "prima", søkere: søkere });
+
+  return { saker, slett, antallRader };
+};
