@@ -1,7 +1,7 @@
 export interface TopicResponse {
   topic: string;
   key: string;
-  value: string; // JSON?
+  value: string | null;
   partition: number;
   offset: number;
   timestamp: number;

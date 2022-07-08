@@ -69,8 +69,7 @@ const soeknaderResponse: TopicResponse[] = [
   {
     topic: "soeknader.api.v1",
     key: "soknadkey-6",
-    value:
-      "eyJ2dXJkZXJ0QXYiOiJGX1o5OTQ1NTQuRV9aOTk0NTU0QHRyeWdkZWV0YXRlbi5ubyIsInRpZHNwdW5rdEZvclZ1cmRlcmluZyI6IjIwMjItMDctMDRUMTE6MDM6NTMuMDg5ODY5MjEzIiwiZXJNZWRsZW0iOiJmYWxzZSJ9",
+    value: null,
     partition: 11,
     offset: 4,
     timestamp: 1656925433089,
