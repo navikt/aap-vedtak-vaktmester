@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { TopicResponse } from "../types/TopicResponse";
+import { TopicResponse } from "../src/types/TopicResponse";
 
 const soekereResponse: TopicResponse[] = [
   {
@@ -77,7 +77,7 @@ const soeknaderResponse: TopicResponse[] = [
 ];
 
 export const handlers = [
-  rest.get("/aap-vaktmester/api/topics", (req, res, ctx) => {
+  rest.get("http://localhost:3000/aap-vaktmester/api/topics", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(["soekere.api.v1", "soeknader.api.v1"]), ctx.delay(650));
   }),
   rest.get("/aap-vaktmester/api/topic/soekere.api.v1/latest", (req, res, ctx) => {

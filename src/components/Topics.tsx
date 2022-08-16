@@ -1,5 +1,5 @@
 import { Loader, Select } from "@navikt/ds-react";
-import { useQuery } from "react-query";
+import useSWR from "swr";
 
 interface TopicsProps {
   velgTopic: Function;
@@ -11,27 +11,19 @@ interface OptionType {
 }
 
 const Topics = ({ velgTopic }: TopicsProps) => {
-  const { isLoading, error, data } = useQuery(
-    "topics",
-    () =>
-      fetch("/aap-vaktmester/api/topics")
-        .then((res) => res.json())
-        .catch((error) => console.log(error)),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data, error } = useSWR("/aap-vaktmester/api/topics");
 
   const handleChange = (event: React.FormEvent) => {
     velgTopic((event.target as HTMLInputElement).value);
   };
 
-  if (isLoading) {
-    return <Loader />;
+  if (!data && !error) {
+    return <Loader title={"Laster topics..."} />;
   }
 
   if (error) {
-    return <div>Oh noes!</div>;
+    console.error(error);
+    return <div>Klarte ikke å hente topics.</div>;
   }
 
   const options: OptionType[] = [{ value: "", label: "Velg topic" }];

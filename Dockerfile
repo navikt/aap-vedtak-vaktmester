@@ -1,14 +1,18 @@
-FROM navikt/node-express:14-alpine
+FROM node:16-alpine
+
 ENV NODE_ENV production
 
-WORKDIR /app
-COPY server/dist/ ./server
-COPY dist/ ./dist
-
-
-USER root
-RUN chown -R apprunner:apprunner /app
+RUN addgroup --system --gid 1069 nodejs
+RUN adduser --system --uid 1069 nextjs
 
 WORKDIR /app
+COPY --chown=nextjs:nodejs .next/standalone ./
+COPY --chown=nextjs:nodejs .next/static ./.next/static
+
+USER nextjs
+
 EXPOSE 3000
-CMD ["node", "server/index.js"]
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]

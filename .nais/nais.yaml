@@ -9,19 +9,16 @@ spec:
   image: {{image}}
   port: 3000
   liveness:
-    path: "/aap-vaktmester/internal/isAlive"
+    path: "/aap-vaktmester/api/internal/isAlive"
     initialDelay: 20
     timeout: 60
   readiness:
-    path: "/aap-vaktmester/internal/isready"
+    path: "/aap-vaktmester/api/internal/isReady"
     initialDelay: 20
     timeout: 60
   replicas:
     min: 2
     max: 2
-  prometheus:
-    enabled: true
-    path: "/aap-vaktmester/internal/metrics"
   ingresses:
   {{#each ingresses as |url|}}
      - {{url}}
