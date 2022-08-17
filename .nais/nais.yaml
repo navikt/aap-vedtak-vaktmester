@@ -9,11 +9,11 @@ spec:
   image: {{image}}
   port: 3000
   liveness:
-    path: "/aap-vaktmester/api/internal/isAlive"
+    path: "/api/internal/isAlive"
     initialDelay: 20
     timeout: 60
   readiness:
-    path: "/aap-vaktmester/api/internal/isReady"
+    path: "/api/internal/isReady"
     initialDelay: 20
     timeout: 60
   replicas:
