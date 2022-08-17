@@ -13,7 +13,7 @@ const Search = () => {
 
   const kanSøke = valgtTopic !== "" && valgtTopic !== undefined;
   const { data, error, mutate } = useSWR(
-    kanSøke ? `${process.env.NEXT_PUBLIC_APP_URL}/api/topic/${valgtTopic}/${sortering}` : null
+    kanSøke ? `${process.env.NEXT_PUBLIC_API_URL}/api/topic/${valgtTopic}/${sortering}` : null
   );
 
   const velgTopic = (topic: string) => {
