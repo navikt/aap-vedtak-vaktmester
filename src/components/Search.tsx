@@ -12,7 +12,7 @@ const Search = () => {
   const [sistOppdatert, settSistOppdatert] = useState<string>("Never!");
 
   const kanSøke = valgtTopic !== "" && valgtTopic !== undefined;
-  const { data, error, mutate } = useSWR(kanSøke ? `/aap-vaktmester/api/topic/${valgtTopic}/${sortering}` : null);
+  const { data, error, mutate } = useSWR(kanSøke ? `/api/topic/${valgtTopic}/${sortering}` : null);
 
   const velgTopic = (topic: string) => {
     settValgtTopic(topic);

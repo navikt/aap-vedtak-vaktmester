@@ -77,19 +77,19 @@ const soeknaderResponse: TopicResponse[] = [
 ];
 
 export const handlers = [
-  rest.get("/aap-vaktmester/api/topics", (req, res, ctx) => {
+  rest.get("/api/topics", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(["soekere.api.v1", "soeknader.api.v1"]), ctx.delay(650));
   }),
-  rest.get("/aap-vaktmester/api/topic/soekere.api.v1/latest", (req, res, ctx) => {
+  rest.get("/api/topic/soekere.api.v1/latest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soekereResponse), ctx.delay(250));
   }),
-  rest.get("/aap-vaktmester/api/topic/soekere.api.v1/earliest", (req, res, ctx) => {
+  rest.get("/api/topic/soekere.api.v1/earliest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soekereResponse.reverse()), ctx.delay(250));
   }),
-  rest.get("/aap-vaktmester/api/topic/soeknader.api.v1/latest", (req, res, ctx) => {
+  rest.get("/api/topic/soeknader.api.v1/latest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soeknaderResponse), ctx.delay(1200));
   }),
-  rest.get("/aap-vaktmester/api/topic/soeknader.api.v1/earliest", (req, res, ctx) => {
+  rest.get("/api/topic/soeknader.api.v1/earliest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soeknaderResponse.reverse()), ctx.delay(250));
   }),
 ];
