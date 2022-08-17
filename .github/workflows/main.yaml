@@ -8,7 +8,7 @@ env:
 jobs:
   "build":
     name: "build"
-    runs-on: "ubuntu-18.04"
+    runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v2"
       - uses: "actions/setup-node@v2"
@@ -21,6 +21,12 @@ jobs:
         with:
           path: 'node_modules'
           key: "${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}"
+      - name: "Cache server node_modules"
+        id: "cache-server-node-modules"
+        uses: "actions/cache@v2"
+        with:
+          path: "server/node_modules"
+          key: "${{ runner.os }}-modules-${{ hashFiles('server/yarn.lock') }}"
       - name: "Install dependencies"
         if: "steps.cache-node-modules.outputs.cache-hit != 'true'"
         run: "yarn install --frozen-lockfile"
@@ -41,6 +47,7 @@ jobs:
         uses: "docker/build-push-action@v2"
         with:
           context: .
+          file: Dockerfile
           tags: "${{ env.IMAGE }}"
           push: "true"
           cache-from: "type=gha"
@@ -48,7 +55,7 @@ jobs:
   "deployAppToDev":
     name: "Deploy app to dev"
     needs: "build"
-    runs-on: "ubuntu-18.04"
+    runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v2"
       - name: "Deploy to DEV"
