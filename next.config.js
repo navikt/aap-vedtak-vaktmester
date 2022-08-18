@@ -1,15 +1,12 @@
 const nextConfig = {
-  trailingSlash: true,
+  trailingSlash: false,
   reactStrictMode: true,
   output: "standalone",
-  async headers() {
+  async rewrites() {
     return [
       {
         source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Origin", value: "https://aap-devtools.dev.intern.nav.no/" },
-          { key: "Access-Control-Allow-Methods", value: "GET" },
-        ],
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
       },
     ];
   },

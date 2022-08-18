@@ -11,7 +11,7 @@ interface OptionType {
 }
 
 const Topics = ({ velgTopic }: TopicsProps) => {
-  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/topics`);
+  const { data, error } = useSWR("/api/topics");
 
   const handleChange = (event: React.FormEvent) => {
     velgTopic((event.target as HTMLInputElement).value);
