@@ -1,14 +1,19 @@
 import { TopicResponse } from "../types/TopicResponse";
-import { Loader, Table } from "@navikt/ds-react";
+import { Button, ErrorMessage, Loader, Table } from "@navikt/ds-react";
 import { format } from "date-fns";
 import { Buffer } from "buffer";
+import { Delete } from "@navikt/ds-icons";
+import { useState } from "react";
+import { SlettModal } from "./SlettModal";
 
 type TopicResultProps = {
   searchResult: TopicResponse[] | undefined;
   isLoading: boolean;
+  error: Object;
 };
 
 const Rad = ({ data }: { data: TopicResponse }) => {
+  const [visModal, settVisModal] = useState<boolean>(false);
   const dato = new Date(data.timestamp);
   const parseJSON = () => {
     if (!data.value) {
@@ -20,23 +25,41 @@ const Rad = ({ data }: { data: TopicResponse }) => {
       return JSON.stringify(jsonString, null, 2);
     } catch (error) {
       console.error("Klarte ikke å parse json. " + error);
+      console.error(data.value);
     }
   };
 
   return (
-    <Table.ExpandableRow content={<pre>{parseJSON()}</pre>}>
-      <Table.DataCell>{format(dato, "dd.MM.yyyy HH:mm:ss.SSS")}</Table.DataCell>
-      <Table.DataCell>{data.key}</Table.DataCell>
-      <Table.DataCell>{data.topic}</Table.DataCell>
-      <Table.DataCell>{data.partition}</Table.DataCell>
-      <Table.DataCell>{data.offset}</Table.DataCell>
-    </Table.ExpandableRow>
+    <>
+      <Table.ExpandableRow content={<pre>{parseJSON()}</pre>}>
+        <Table.DataCell>{format(dato, "dd.MM.yyyy HH:mm:ss.SSS")}</Table.DataCell>
+        <Table.DataCell>{data.key}</Table.DataCell>
+        <Table.DataCell>{data.topic}</Table.DataCell>
+        <Table.DataCell>{data.partition}</Table.DataCell>
+        <Table.DataCell>{data.offset}</Table.DataCell>
+        <Table.DataCell>
+          <Button
+            variant={"tertiary"}
+            title={"Slett søknad og søker"}
+            type={"button"}
+            onClick={() => settVisModal(true)}
+          >
+            <Delete />
+          </Button>
+        </Table.DataCell>
+      </Table.ExpandableRow>
+      <SlettModal pid={data.key} vis={visModal} lukk={() => settVisModal(false)} />
+    </>
   );
 };
 
-const TopicResult = ({ searchResult, isLoading }: TopicResultProps) => {
+const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   if (isLoading) {
     return <Loader size={"2xlarge"} />;
+  }
+
+  if (error) {
+    return <ErrorMessage>{error.toString()}</ErrorMessage>;
   }
 
   return (
@@ -49,12 +72,13 @@ const TopicResult = ({ searchResult, isLoading }: TopicResultProps) => {
           <Table.HeaderCell>Topic</Table.HeaderCell>
           <Table.HeaderCell>Partition</Table.HeaderCell>
           <Table.HeaderCell>Offset</Table.HeaderCell>
+          <Table.HeaderCell>Actions</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {!searchResult && (
           <Table.Row>
-            <Table.DataCell colSpan={6}>Ingen ting her enda...</Table.DataCell>
+            <Table.DataCell colSpan={7}>Ingen ting her enda...</Table.DataCell>
           </Table.Row>
         )}
         {searchResult &&

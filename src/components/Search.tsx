@@ -46,10 +46,10 @@ const Search = () => {
           </Button>
           {visFeilmelding && <ErrorMessage>Du må velge topic først!</ErrorMessage>}
         </div>
-        <div className={"blokk timestamp"}>Sist søkt: {sistOppdatert}</div>
+        <div className={"blokk timestamp"}>Sist oppdatert: {sistOppdatert}</div>
       </div>
       <div className={"resultat"}>
-        <TopicResult searchResult={data} isLoading={!data && !error && kanSøke} />
+        <TopicResult searchResult={data} isLoading={!data && !error && kanSøke} error={error} />
       </div>
     </main>
   );

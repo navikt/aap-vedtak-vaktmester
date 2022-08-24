@@ -4,16 +4,18 @@ import { TopicResponse } from "../src/types/TopicResponse";
 const soekereResponse: TopicResponse[] = [
   {
     topic: "soekere.api.v1",
-    key: "someKey-2",
-    value: "json her",
+    key: "1234567",
+    value:
+      "eyJ2dXJkZXJ0QXYiOiJGX1o5OTQ1NTQuRV9aOTk0NTU0QHRyeWdkZWV0YXRlbi5ubyIsInRpZHNwdW5rdEZvclZ1cmRlcmluZyI6IjIwMjItMDctMDRUMTE6MjQ6MjEuMDIzNzQyNjc4IiwiZXJNZWRsZW0iOiJ0cnVlIn0",
     partition: 1,
     offset: 1,
     timestamp: 1656925433089,
   },
   {
     topic: "soekere.api.v1",
-    key: "someKey-1",
-    value: "json her",
+    key: "9187342",
+    value:
+      "eyJ2dXJkZXJ0QXYiOiJGX1o5OTQ1NTQuRV9aOTk0NTU0QHRyeWdkZWV0YXRlbi5ubyIsInRpZHNwdW5rdEZvclZ1cmRlcmluZyI6IjIwMjItMDctMDFUMTQ6MDc6NTMuNDU1NDMwNSIsImVyTWVkbGVtIjoidHJ1ZSJ9",
     partition: 1,
     offset: 0,
     timestamp: 1656932151375,
@@ -91,5 +93,11 @@ export const handlers = [
   }),
   rest.get("/api/topic/soeknader.api.v1/earliest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soeknaderResponse.reverse()), ctx.delay(250));
+  }),
+  rest.delete("/api/soeker/:id", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(850));
+  }),
+  rest.delete("/api/soeknad/:id", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1202));
   }),
 ];
