@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/topic/${topic[0]}/${topic[1]}`);
+      const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${topic[0]}/${topic[1]}`);
       if (result.ok) {
         const data = await result.json();
         return { ok: result.ok, data };

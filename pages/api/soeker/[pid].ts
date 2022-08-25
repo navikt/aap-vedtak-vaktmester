@@ -6,7 +6,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
   if (req.method === "DELETE") {
     const { pid } = req.query;
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/søker/${pid}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/søker/${pid}`, {
       method: "DELETE",
     })
       .catch((error) => {
