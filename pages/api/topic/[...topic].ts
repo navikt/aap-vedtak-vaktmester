@@ -16,12 +16,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${topic[0]}/${topic[1]}`);
       if (result.ok) {
         const data = await result.json();
-        return { ok: result.ok, data };
+        res.status(res.statusCode).send(data);
       } else {
-        return { ok: result.ok, error: result.statusText };
+        res.status(res.statusCode).json({ message: result.statusText });
       }
     } catch (e) {
-      return { error: `useFetchPOST: ${e}` };
+      res.status(500).send({ error: e });
     }
   }
 };
