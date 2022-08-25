@@ -6,18 +6,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   if (req.method === "GET") {
     try {
-      console.log("Topic-spørring");
+      console.log(`Tpic-spørring mot ${process.env.NEXT_PUBLIC_API_URL}/api/topics}`);
       const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/topics`);
+      console.log(result);
       if (result.ok) {
         const data = await result.json();
-        return { ok: result.ok, data };
+        // return { ok: result.ok, data };
+        res.status(res.statusCode).send(data);
       } else {
         console.error(`Topic-spørring feilet. HttpStatus: ${res.status}. Message: ${res.statusMessage}`);
-        return { ok: result.ok, error: result.statusText };
+        // return { ok: result.ok, error: result.statusText };
+        res.status(res.statusCode).send(result.statusText);
       }
     } catch (e) {
       console.error(`Topic-spørring feilet med en uhåndtert feil: ${e}`);
-      return { error: `useFetchPOST: ${e}` };
+      res.status(500).send({ error: e });
+      // return { error: `useFetchPOST: ${e}` };
     }
   }
 };
