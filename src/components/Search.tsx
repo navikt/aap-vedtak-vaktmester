@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TopicResult } from "./TopicResult";
 import { format } from "date-fns";
 import useSWR from "swr";
+import { NySoeknad } from "./NySoeknad";
 
 const Search = () => {
   const [valgtTopic, settValgtTopic] = useState<string>("");
@@ -47,6 +48,9 @@ const Search = () => {
           {visFeilmelding && <ErrorMessage>Du må velge topic først!</ErrorMessage>}
         </div>
         <div className={"blokk timestamp"}>Sist oppdatert: {sistOppdatert}</div>
+        <div className={"blokk"}>
+          <NySoeknad />
+        </div>
       </div>
       <div className={"resultat"}>
         <TopicResult searchResult={data} isLoading={!data && !error && kanSøke} error={error} />

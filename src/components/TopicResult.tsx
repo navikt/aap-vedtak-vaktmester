@@ -1,5 +1,5 @@
 import { TopicResponse } from "../types/TopicResponse";
-import { Button, ErrorMessage, Loader, Table } from "@navikt/ds-react";
+import { Alert, Button, ErrorMessage, Loader, Table } from "@navikt/ds-react";
 import { format } from "date-fns";
 import { Buffer } from "buffer";
 import { Delete } from "@navikt/ds-icons";
@@ -79,6 +79,13 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
         {!searchResult && (
           <Table.Row>
             <Table.DataCell colSpan={7}>Ingen ting her enda...</Table.DataCell>
+          </Table.Row>
+        )}
+        {searchResult && searchResult.length === 0 && (
+          <Table.Row>
+            <Table.DataCell colSpan={7}>
+              <Alert variant={"info"}>Søket returnerte ingen treff</Alert>
+            </Table.DataCell>
           </Table.Row>
         )}
         {searchResult &&

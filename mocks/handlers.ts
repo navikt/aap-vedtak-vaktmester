@@ -80,7 +80,7 @@ const soeknaderResponse: TopicResponse[] = [
 
 export const handlers = [
   rest.get("/api/topics", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(["soekere.api.v1", "soeknader.api.v1"]), ctx.delay(650));
+    return res(ctx.status(200), ctx.json(["soekere.api.v1", "soeknader.api.v1", "tomt.topic"]), ctx.delay(650));
   }),
   rest.get("/api/topic/soekere.api.v1/latest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soekereResponse), ctx.delay(250));
@@ -94,10 +94,19 @@ export const handlers = [
   rest.get("/api/topic/soeknader.api.v1/earliest", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(soeknaderResponse.reverse()), ctx.delay(250));
   }),
+  rest.get("/api/topic/tomt.topic/earliest", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([]), ctx.delay(250));
+  }),
+  rest.get("/api/topic/tomt.topic/latest", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([]), ctx.delay(250));
+  }),
   rest.delete("/api/soeker/:id", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(850));
   }),
   rest.delete("/api/soeknad/:id", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1202));
+  }),
+  rest.post("/api/soeknad/:id", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(1202));
   }),
 ];
