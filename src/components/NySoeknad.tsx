@@ -8,6 +8,7 @@ const NySoeknad = () => {
   const [pidError, settPidError] = useState<string | undefined>(undefined);
   const [visModal, settVisModal] = useState<boolean>(false);
   const [status, settStatus] = useState<{ status: string; message: string } | undefined>(undefined);
+  const [senderData, settSenderData] = useState<boolean>(false);
 
   const validerPid = () => {
     if (!pidRef.current) {
@@ -66,6 +67,7 @@ const NySoeknad = () => {
   const postData = (event: React.FormEvent) => {
     event.preventDefault();
     if (validerFelt()) {
+      settSenderData(true);
       // @ts-ignore
       const postBody = JSON.stringify({ fødselsdato: fdatoRef.current.value });
       // @ts-ignore
@@ -78,6 +80,7 @@ const NySoeknad = () => {
         } else {
           settStatus({ status: "not_ok", message: "Noe feilet: " + res.statusText });
         }
+        settSenderData(false);
       });
     } else {
       console.log("Skjema inneholder feil.");
@@ -119,7 +122,9 @@ const NySoeknad = () => {
               onChange={() => fdatoError && settFDatoError(undefined)}
             />
             <div className={"knapperad"}>
-              <Button variant={"primary"}>Opprett søknad</Button>
+              <Button variant={"primary"} loading={senderData}>
+                Opprett søknad
+              </Button>
             </div>
             {status && <Alert variant={status.status === "ok" ? "success" : "warning"}>{status.message}</Alert>}
           </form>

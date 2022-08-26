@@ -21,7 +21,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "POST") {
-    console.log("HIT");
     try {
       const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/søknad/${pid}`, {
         method: "POST",

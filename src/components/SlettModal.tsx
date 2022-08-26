@@ -11,31 +11,40 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
   const [søkerSlettet, settSøkerSlettet] = useState<boolean>(false);
   const [søknadSlettet, settSøknadSlettet] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string | undefined>(undefined);
+  const [statusmelding, settStatusmelding] = useState<string | undefined>(undefined);
+  const [sletterSøker, settSletterSøker] = useState<boolean>(false);
+  const [sletterSøknad, settSletterSøknad] = useState<boolean>(false);
   if (!vis) {
     return null;
   }
 
   const slettSøker = () => {
+    settSletterSøker(true);
     fetch(`/api/soeker/${pid}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
         settSøkerSlettet(true);
+        settStatusmelding("Søker slettet!");
       } else {
         settFeilmelding(`Feil ved sletting av søker: ${res.status} ${res.statusText}`);
       }
+      settSletterSøker(false);
     });
   };
 
   const slettSøknad = () => {
+    settSletterSøknad(true);
     fetch(`/api/soeknad/${pid}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
         settSøknadSlettet(true);
+        settStatusmelding("Søknad slettet!");
       } else {
         settFeilmelding(`Feil ved sletting av søknad: ${res.status} ${res.statusText}`);
       }
+      settSletterSøknad(false);
     });
   };
 
@@ -48,13 +57,14 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
         <BodyShort>Key: {pid}</BodyShort>
         <Alert variant={"warning"}>Dette kan du ikke angre på</Alert>
         <div className={"knapperad"}>
-          <Button variant={"secondary"} onClick={() => slettSøker()} disabled={søkerSlettet}>
+          <Button variant={"secondary"} onClick={() => slettSøker()} disabled={søkerSlettet} loading={sletterSøker}>
             Slett søker
           </Button>
-          <Button variant={"secondary"} onClick={() => slettSøknad()} disabled={søknadSlettet}>
+          <Button variant={"secondary"} onClick={() => slettSøknad()} disabled={søknadSlettet} loading={sletterSøknad}>
             Slett søknad
           </Button>
         </div>
+        {statusmelding && <Alert variant={"success"}>{statusmelding}</Alert>}
         {feilmelding && <Alert variant={"error"}>{feilmelding}</Alert>}
       </Modal.Content>
     </Modal>
