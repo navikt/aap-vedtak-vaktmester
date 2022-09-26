@@ -18,7 +18,7 @@ const NySoeknad = () => {
       return "Du må legge inn personident.";
     }
     if (!pidRef.current.value.match(/^\d{11}$/)) {
-      return "Personident har ugydlig verdi. Må være 11 siffer.";
+      return "Personident har ugyldig verdi. Må være 11 siffer.";
     }
     return undefined;
   };
