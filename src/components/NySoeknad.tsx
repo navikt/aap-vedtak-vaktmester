@@ -30,14 +30,11 @@ const NySoeknad = () => {
     if (!harVerdi(fdatoRef.current.value)) {
       return "Du må legge inn en fødselsdato.";
     }
-    if (fdatoRef.current.value.length !== 8) {
+    if (fdatoRef.current.value.length !== 10) {
       return "Dato har ugyldig lengde.";
     }
     const datoString = fdatoRef.current.value;
-    const dag = datoString.substring(0, 2);
-    const mnd = datoString.substring(2, 4);
-    const aar = datoString.substring(4);
-    const gyldigDato = Date.parse(`${aar}-${mnd}-${dag}`);
+    const gyldigDato = Date.parse(datoString);
     if (isNaN(gyldigDato)) {
       return `${datoString} er en ugyldig dato`;
     }
@@ -116,7 +113,7 @@ const NySoeknad = () => {
             />
             <TextField
               ref={fdatoRef}
-              label={"Fødselsdato (ddmmåååå)"}
+              label={"Fødselsdato (åååå-mm-dd)"}
               autoComplete={"off"}
               error={fdatoError}
               onChange={() => fdatoError && settFDatoError(undefined)}
