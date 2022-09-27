@@ -1,12 +1,21 @@
 import { useRef, useState } from "react";
 import { Alert, Button, Heading, Modal, TextField } from "@navikt/ds-react";
+import { useDisclosure } from "../hooks/useDisclosure";
+import { tilfeldigDato } from "../lib/dates";
+
+const harVerdi = (input: string) => {
+  if (input === undefined || input === null) {
+    return false;
+  }
+  return !(input === "" || input.trim() === "");
+};
 
 const NySoeknad = () => {
   const fdatoRef = useRef<HTMLInputElement>(null);
   const pidRef = useRef<HTMLInputElement>(null);
   const [fdatoError, settFDatoError] = useState<string | undefined>(undefined);
   const [pidError, settPidError] = useState<string | undefined>(undefined);
-  const [visModal, settVisModal] = useState<boolean>(false);
+  const [fdato, settFDato] = useState<string>("");
   const [status, settStatus] = useState<{ status: string; message: string } | undefined>(undefined);
   const [senderData, settSenderData] = useState<boolean>(false);
 
@@ -54,12 +63,6 @@ const NySoeknad = () => {
       return true;
     }
   };
-  const harVerdi = (input: string) => {
-    if (input === undefined || input === null) {
-      return false;
-    }
-    return !(input === "" || input.trim() === "");
-  };
 
   const postData = (event: React.FormEvent) => {
     event.preventDefault();
@@ -84,15 +87,19 @@ const NySoeknad = () => {
     }
   };
 
+  const { isOpen, onOpen, onClose } = useDisclosure(false);
+  const settTilfeldigFdato = () => {
+    settFDato(tilfeldigDato(18, 62));
+  };
   return (
     <>
-      <Button variant={"secondary"} onClick={() => settVisModal(true)}>
+      <Button variant={"secondary"} onClick={onOpen}>
         Ny søknad
       </Button>
       <Modal
-        open={visModal}
+        open={isOpen}
         onClose={() => {
-          settVisModal(false);
+          onClose();
           settStatus(undefined);
         }}
         shouldCloseOnOverlayClick={false}
@@ -116,8 +123,20 @@ const NySoeknad = () => {
               label={"Fødselsdato (åååå-mm-dd)"}
               autoComplete={"off"}
               error={fdatoError}
-              onChange={() => fdatoError && settFDatoError(undefined)}
+              onChange={(event) => {
+                settFDato(event.target.value);
+                fdatoError && settFDatoError(undefined);
+              }}
+              value={fdato}
             />
+            <div className={"knapperad"}>
+              <Heading level={"3"} size={"medium"}>
+                Tilfeldig fødselsdato
+              </Heading>
+              <Button variant={"secondary"} type={"button"} onClick={settTilfeldigFdato}>
+                {"18 - 62"}
+              </Button>
+            </div>
             <div className={"knapperad"}>
               <Button variant={"primary"} loading={senderData}>
                 Opprett søknad
