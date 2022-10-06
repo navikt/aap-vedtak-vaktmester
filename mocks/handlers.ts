@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { TopicResponse } from "../src/types/TopicResponse";
+import {DollyResponse} from "../src/types/DollyResponse";
 
 const soekereResponse: TopicResponse[] = [
   {
@@ -78,6 +79,16 @@ const soeknaderResponse: TopicResponse[] = [
   },
 ];
 
+const dollyResponse: DollyResponse[] = [
+  {
+    fødselsnummer: "12345678910",
+    navn: "Spesielt Skap"
+  },{
+    fødselsnummer: "12345678911",
+    navn: "Utadvendt Utvikler"
+  },
+];
+
 export const handlers = [
   rest.get("/api/topics", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(["soekere.api.v1", "soeknader.api.v1", "tomt.topic"]), ctx.delay(650));
@@ -108,5 +119,8 @@ export const handlers = [
   }),
   rest.post("/api/soeknad/:id", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(1202));
+  }),
+  rest.get("/api/dolly", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dollyResponse), ctx.delay(650));
   }),
 ];
