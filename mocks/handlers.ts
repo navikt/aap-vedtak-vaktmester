@@ -82,10 +82,12 @@ const soeknaderResponse: TopicResponse[] = [
 const dollyResponse: DollyResponse[] = [
   {
     fødselsnummer: "12345678910",
-    navn: "Spesielt Skap"
+    navn: "Spesielt Skap",
+    fødselsdato: "1975-01-01"
   },{
     fødselsnummer: "12345678911",
-    navn: "Utadvendt Utvikler"
+    navn: "Utadvendt Utvikler",
+    fødselsdato: "1980-05-06"
   },
 ];
 
