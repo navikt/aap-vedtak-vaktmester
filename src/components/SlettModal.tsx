@@ -55,7 +55,7 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
           Sletting av data
         </Heading>
         <BodyShort>Key: {pid}</BodyShort>
-        <Alert variant={"warning"}>Dette kan du ikke angre på</Alert>
+        <Alert variant={"warning"}>Dette kan du angre på, men du kan ikke gjøre noe med det</Alert>
         <div className={"knapperad"}>
           <Button variant={"secondary"} onClick={() => slettSøker()} disabled={søkerSlettet} loading={sletterSøker}>
             Slett søker
