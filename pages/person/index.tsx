@@ -19,7 +19,7 @@ const PersonPage = () => {
               Send søknad - Trykk på denne knappen for å lage en søknad
             </li>
             <li>
-              Ny meldeplikt - Opprett et nytt "meldekort" for bruker
+              Ny meldeplikt - Opprett et nytt meldekort for bruker
             </li>
             <li>
               Slett søker - Slette søkeren fra systemet så du kan begynne på nytt
