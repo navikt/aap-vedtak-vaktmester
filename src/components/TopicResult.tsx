@@ -63,7 +63,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   }
 
   return (
-    <Table>
+    <Table size={"small"}>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell />

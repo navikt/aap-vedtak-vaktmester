@@ -36,13 +36,18 @@ const Search = () => {
           <Topics velgTopic={velgTopic} />
         </div>
         <div className={"blokk"}>
-          <ToggleGroup onChange={(value) => settSortering(value)} value={sortering}>
+          <ToggleGroup onChange={(value) => settSortering(value)} value={sortering} size={"small"}>
             <ToggleGroup.Item value={"LATEST"}>Nyeste</ToggleGroup.Item>
             <ToggleGroup.Item value={"EARLIEST"}>Eldste</ToggleGroup.Item>
           </ToggleGroup>
         </div>
         <div className={"blokk"}>
-          <Button variant={"primary"} onClick={() => soekPaaTopic()} loading={!data && !error && kanSøke}>
+          <Button
+            variant={"primary"}
+            size={"small"}
+            onClick={() => soekPaaTopic()}
+            loading={!data && !error && kanSøke}
+          >
             Refresh
           </Button>
           {visFeilmelding && <ErrorMessage>Du må velge topic først!</ErrorMessage>}

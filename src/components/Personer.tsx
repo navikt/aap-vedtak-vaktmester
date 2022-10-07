@@ -1,23 +1,32 @@
 import useSWR from "swr";
-import {Button, Loader, Table} from "@navikt/ds-react";
-import {DollyResponse} from "../types/DollyResponse";
-import {NyMeldeplikt} from "./NyMeldeplikt";
+import { Button, Loader, Table } from "@navikt/ds-react";
+import { DollyResponse } from "../types/DollyResponse";
+import { NyMeldeplikt } from "./NyMeldeplikt";
 
-const Personrad = ({data}: {data: DollyResponse}) => {
-
+const Personrad = ({ data }: { data: DollyResponse }) => {
   return (
     <>
       <Table.ExpandableRow content={<pre>{JSON.stringify(data)}</pre>}>
         <Table.DataCell>{data.fødselsnummer}</Table.DataCell>
         <Table.DataCell>{data.navn}</Table.DataCell>
         <Table.DataCell>{data.fødselsdato}</Table.DataCell>
-        <Table.DataCell><Button variant={"primary"} onClick={() => sendSøknad(data.fødselsnummer, data.fødselsdato)}>Send søknad</Button> </Table.DataCell>
-        <Table.DataCell><NyMeldeplikt personident={data.fødselsnummer}/> </Table.DataCell>
-        <Table.DataCell><Button variant={"danger"} onClick={() => slettSøker(data.fødselsnummer)}>Slett søker</Button> </Table.DataCell>
+        <Table.DataCell>
+          <Button variant={"primary"} size={"small"} onClick={() => sendSøknad(data.fødselsnummer, data.fødselsdato)}>
+            Send søknad
+          </Button>
+        </Table.DataCell>
+        <Table.DataCell>
+          <NyMeldeplikt personident={data.fødselsnummer} />{" "}
+        </Table.DataCell>
+        <Table.DataCell>
+          <Button variant={"danger"} size={"small"} onClick={() => slettSøker(data.fødselsnummer)}>
+            Slett søker
+          </Button>
+        </Table.DataCell>
       </Table.ExpandableRow>
     </>
-  )
-}
+  );
+};
 
 const sendSøknad = (fnr: string, fdato: string) => {
   const postBody = JSON.stringify({ fødselsdato: fdato });
@@ -27,12 +36,12 @@ const sendSøknad = (fnr: string, fdato: string) => {
     body: postBody,
   }).then((res) => {
     if (res.ok) {
-      alert("Sendt søknad")
+      alert("Sendt søknad");
     } else {
-      alert(res.statusText)
+      alert(res.statusText);
     }
   });
-}
+};
 
 const slettSøker = (fnr: string) => {
   fetch(`/api/slett/${fnr}`, {
@@ -44,8 +53,7 @@ const slettSøker = (fnr: string) => {
       alert(`Feil ved sletting av søknad: ${res.status} ${res.statusText}`);
     }
   });
-}
-
+};
 
 const Personer = () => {
   const { data, error } = useSWR<DollyResponse[]>("/api/dolly");
@@ -60,7 +68,7 @@ const Personer = () => {
   }
 
   return (
-    <Table>
+    <Table size={"small"}>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell />
@@ -83,14 +91,10 @@ const Personer = () => {
             <Table.DataCell colSpan={2}>Dolly er tom</Table.DataCell>
           </Table.Row>
         )}
-        {data &&
-          data.map((res: DollyResponse) => <Personrad data={res} key={res.fødselsnummer} />)
-        }
+        {data && data.map((res: DollyResponse) => <Personrad data={res} key={res.fødselsnummer} />)}
       </Table.Body>
     </Table>
-  )
-
-
-}
+  );
+};
 
 export { Personer };

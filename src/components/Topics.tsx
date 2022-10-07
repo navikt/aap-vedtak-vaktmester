@@ -30,7 +30,12 @@ const Topics = ({ velgTopic }: TopicsProps) => {
   data.map((topic: string) => options.push({ value: topic, label: topic }));
 
   return (
-    <Select label={"Topics"} placeholder={"Velg et topic"} onChange={(event: React.FormEvent) => handleChange(event)}>
+    <Select
+      label={"Topics"}
+      placeholder={"Velg et topic"}
+      onChange={(event: React.FormEvent) => handleChange(event)}
+      size={"small"}
+    >
       {options.map((topic: OptionType) => (
         <option value={topic.value} key={topic.value + "::" + topic.label}>
           {topic.label}

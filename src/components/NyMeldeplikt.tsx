@@ -1,7 +1,7 @@
-import {RefObject, useRef, useState} from "react";
-import {Alert, Button, Heading, Modal, TextField} from "@navikt/ds-react";
-import {useDisclosure} from "../hooks/useDisclosure";
-import {format} from "date-fns";
+import { RefObject, useRef, useState } from "react";
+import { Alert, Button, Heading, Modal, TextField } from "@navikt/ds-react";
+import { useDisclosure } from "../hooks/useDisclosure";
+import { format } from "date-fns";
 
 const harVerdi = (input: string) => {
   if (input === undefined || input === null) {
@@ -10,7 +10,7 @@ const harVerdi = (input: string) => {
   return !(input === "" || input.trim() === "");
 };
 
-const NyMeldeplikt = ({personident}: { personident: string }) => {
+const NyMeldeplikt = ({ personident }: { personident: string }) => {
   const fradatoRef = useRef<HTMLInputElement>(null);
   const tildatoRef = useRef<HTMLInputElement>(null);
   const [fradatoError, settFraDatoError] = useState<string | undefined>(undefined);
@@ -53,7 +53,6 @@ const NyMeldeplikt = ({personident}: { personident: string }) => {
   };
 
   const getDateArray = (start: Date, end: Date) => {
-
     const arr = [];
     const dt = new Date(start);
 
@@ -81,24 +80,22 @@ const NyMeldeplikt = ({personident}: { personident: string }) => {
 
       const datoer = getDateArray(fraDato, tilDato);
 
-      const data = datoer.map((dato) => (
-        {
-               dato: format(dato, "yyyy-MM-dd"),
-               arbeidstimer: 0,
-               fraværsdag: false
-             }
-      ));
+      const data = datoer.map((dato) => ({
+        dato: format(dato, "yyyy-MM-dd"),
+        arbeidstimer: 0,
+        fraværsdag: false,
+      }));
 
-      const postBody = JSON.stringify({aktivitetPerDag: data});
+      const postBody = JSON.stringify({ aktivitetPerDag: data });
       // @ts-ignore
       fetch(`/api/meldeplikt/${personident}`, {
         method: "POST",
         body: postBody,
       }).then((res) => {
         if (res.ok) {
-          settStatus({status: "ok", message: "Meldeplikt opprettet!"});
+          settStatus({ status: "ok", message: "Meldeplikt opprettet!" });
         } else {
-          settStatus({status: "not_ok", message: "Noe feilet: " + res.statusText});
+          settStatus({ status: "not_ok", message: "Noe feilet: " + res.statusText });
         }
         settSenderData(false);
       });
@@ -107,10 +104,10 @@ const NyMeldeplikt = ({personident}: { personident: string }) => {
     }
   };
 
-  const {isOpen, onOpen, onClose} = useDisclosure(false);
+  const { isOpen, onOpen, onClose } = useDisclosure(false);
   return (
     <>
-      <Button variant={"secondary"} onClick={onOpen}>
+      <Button variant={"secondary"} size={"small"} onClick={onOpen}>
         Ny meldeplikt
       </Button>
       <Modal
@@ -163,4 +160,4 @@ const NyMeldeplikt = ({personident}: { personident: string }) => {
   );
 };
 
-export {NyMeldeplikt};
+export { NyMeldeplikt };

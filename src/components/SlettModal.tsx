@@ -74,13 +74,31 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
         <BodyShort>Key: {pid}</BodyShort>
         <Alert variant={"warning"}>Dette kan du angre på, men du kan ikke gjøre noe med det</Alert>
         <div className={"knapperad"}>
-          <Button variant={"secondary"} onClick={() => slettSøker()} disabled={søkerSlettet} loading={sletterSøker}>
+          <Button
+            variant={"secondary"}
+            size={"small"}
+            onClick={() => slettSøker()}
+            disabled={søkerSlettet}
+            loading={sletterSøker}
+          >
             Slett søker
           </Button>
-          <Button variant={"secondary"} onClick={() => slettMottaker()} disabled={mottakerSlettet} loading={sletterMottaker}>
+          <Button
+            variant={"secondary"}
+            size={"small"}
+            onClick={() => slettMottaker()}
+            disabled={mottakerSlettet}
+            loading={sletterMottaker}
+          >
             Slett mottaker
           </Button>
-          <Button variant={"secondary"} onClick={() => slettSøknad()} disabled={søknadSlettet} loading={sletterSøknad}>
+          <Button
+            variant={"secondary"}
+            size={"small"}
+            onClick={() => slettSøknad()}
+            disabled={søknadSlettet}
+            loading={sletterSøknad}
+          >
             Slett søknad
           </Button>
         </div>

@@ -93,7 +93,7 @@ const NySoeknad = () => {
   };
   return (
     <>
-      <Button variant={"secondary"} onClick={onOpen}>
+      <Button variant={"secondary"} onClick={onOpen} size={"small"}>
         Ny søknad
       </Button>
       <Modal
