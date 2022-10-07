@@ -7,7 +7,7 @@ const Personrad = ({data}: {data: DollyResponse}) => {
 
   return (
     <>
-      <Table.ExpandableRow content={<pre>Ikke noe her enda</pre>}>
+      <Table.ExpandableRow content={<pre>{JSON.stringify(data)}</pre>}>
         <Table.DataCell>{data.fødselsnummer}</Table.DataCell>
         <Table.DataCell>{data.navn}</Table.DataCell>
         <Table.DataCell>{data.fødselsdato}</Table.DataCell>
