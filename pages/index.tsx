@@ -1,6 +1,7 @@
 import { Heading } from "@navikt/ds-react";
 import Head from "next/head";
 import { Search } from "../src/components/Search";
+import Link from "next/link";
 
 const Homepage = () => {
   return (
@@ -13,6 +14,7 @@ const Homepage = () => {
         <Heading size={"xlarge"} level={"1"}>
           AAP Vedtak Vaktmester
         </Heading>
+        <Link href={"/person"}>Testpersoner</Link>
         <Search />
       </div>
     </>
