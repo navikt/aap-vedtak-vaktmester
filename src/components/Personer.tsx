@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import {Button, Loader, Table} from "@navikt/ds-react";
 import {DollyResponse} from "../types/DollyResponse";
+import {NyMeldeplikt} from "./NyMeldeplikt";
 
 const Personrad = ({data}: {data: DollyResponse}) => {
 
@@ -11,6 +12,7 @@ const Personrad = ({data}: {data: DollyResponse}) => {
         <Table.DataCell>{data.navn}</Table.DataCell>
         <Table.DataCell>{data.fødselsdato}</Table.DataCell>
         <Table.DataCell><Button variant={"primary"} onClick={() => sendSøknad(data.fødselsnummer, data.fødselsdato)}>Send søknad</Button> </Table.DataCell>
+        <Table.DataCell><NyMeldeplikt personident={data.fødselsnummer}/> </Table.DataCell>
       </Table.ExpandableRow>
     </>
   )
@@ -52,6 +54,7 @@ const Personer = () => {
           <Table.HeaderCell>Fødselsnummer</Table.HeaderCell>
           <Table.HeaderCell>Navn</Table.HeaderCell>
           <Table.HeaderCell>Fødselsdato</Table.HeaderCell>
+          <Table.HeaderCell />
           <Table.HeaderCell />
         </Table.Row>
       </Table.Header>

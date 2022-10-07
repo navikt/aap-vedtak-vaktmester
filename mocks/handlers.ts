@@ -125,6 +125,9 @@ export const handlers = [
   rest.post("/api/soeknad/:id", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(1202));
   }),
+  rest.post("/api/meldeplikt/:id", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(1202));
+  }),
   rest.get("/api/dolly", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(dollyResponse), ctx.delay(650));
   }),
