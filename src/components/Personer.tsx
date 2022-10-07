@@ -13,6 +13,7 @@ const Personrad = ({data}: {data: DollyResponse}) => {
         <Table.DataCell>{data.fødselsdato}</Table.DataCell>
         <Table.DataCell><Button variant={"primary"} onClick={() => sendSøknad(data.fødselsnummer, data.fødselsdato)}>Send søknad</Button> </Table.DataCell>
         <Table.DataCell><NyMeldeplikt personident={data.fødselsnummer}/> </Table.DataCell>
+        <Table.DataCell><Button variant={"danger"} onClick={() => slettSøker(data.fødselsnummer)}>Slett søker</Button> </Table.DataCell>
       </Table.ExpandableRow>
     </>
   )
@@ -29,6 +30,18 @@ const sendSøknad = (fnr: string, fdato: string) => {
       alert("Sendt søknad")
     } else {
       alert(res.statusText)
+    }
+  });
+}
+
+const slettSøker = (fnr: string) => {
+  fetch(`/api/slett/${fnr}`, {
+    method: "DELETE",
+  }).then((res) => {
+    if (res.ok) {
+      alert("Søknad slettet!");
+    } else {
+      alert(`Feil ved sletting av søknad: ${res.status} ${res.statusText}`);
     }
   });
 }
@@ -54,6 +67,7 @@ const Personer = () => {
           <Table.HeaderCell>Fødselsnummer</Table.HeaderCell>
           <Table.HeaderCell>Navn</Table.HeaderCell>
           <Table.HeaderCell>Fødselsdato</Table.HeaderCell>
+          <Table.HeaderCell />
           <Table.HeaderCell />
           <Table.HeaderCell />
         </Table.Row>
