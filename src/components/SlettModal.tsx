@@ -9,10 +9,12 @@ type ModalProps = {
 
 const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
   const [søkerSlettet, settSøkerSlettet] = useState<boolean>(false);
+  const [mottakerSlettet, settMottakerSlettet] = useState<boolean>(false);
   const [søknadSlettet, settSøknadSlettet] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string | undefined>(undefined);
   const [statusmelding, settStatusmelding] = useState<string | undefined>(undefined);
   const [sletterSøker, settSletterSøker] = useState<boolean>(false);
+  const [sletterMottaker, settSletterMottaker] = useState<boolean>(false);
   const [sletterSøknad, settSletterSøknad] = useState<boolean>(false);
   if (!vis) {
     return null;
@@ -30,6 +32,21 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
         settFeilmelding(`Feil ved sletting av søker: ${res.status} ${res.statusText}`);
       }
       settSletterSøker(false);
+    });
+  };
+
+  const slettMottaker = () => {
+    settSletterMottaker(true);
+    fetch(`/api/mottaker/${pid}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        settMottakerSlettet(true);
+        settStatusmelding("Mottaker slettet!");
+      } else {
+        settFeilmelding(`Feil ved sletting av søker: ${res.status} ${res.statusText}`);
+      }
+      settSletterMottaker(false);
     });
   };
 
@@ -59,6 +76,9 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
         <div className={"knapperad"}>
           <Button variant={"secondary"} onClick={() => slettSøker()} disabled={søkerSlettet} loading={sletterSøker}>
             Slett søker
+          </Button>
+          <Button variant={"secondary"} onClick={() => slettMottaker()} disabled={mottakerSlettet} loading={sletterMottaker}>
+            Slett mottaker
           </Button>
           <Button variant={"secondary"} onClick={() => slettSøknad()} disabled={søknadSlettet} loading={sletterSøknad}>
             Slett søknad

@@ -116,6 +116,9 @@ export const handlers = [
   rest.delete("/api/soeker/:id", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(850));
   }),
+  rest.delete("/api/mottaker/:id", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.delay(850));
+  }),
   rest.delete("/api/soeknad/:id", (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(1202));
   }),
