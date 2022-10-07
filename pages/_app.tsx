@@ -4,6 +4,7 @@ import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { Modal } from "@navikt/ds-react";
 import { useEffect, useState } from "react";
+import { Layout } from "../src/components/Layout";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -46,7 +47,9 @@ export default function App({ Component, pageProps }: AppProps) {
         shouldRetryOnError: false,
       }}
     >
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </SWRConfig>
   );
 }
