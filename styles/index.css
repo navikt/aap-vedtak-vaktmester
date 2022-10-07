@@ -16,7 +16,7 @@ code {
   display: grid;
   place-items: center;
   margin: 0 auto;
-
+  padding-inline: 1rem;
 }
 
 .appContainer > main {
@@ -31,7 +31,8 @@ code {
   flex-direction: column;
   width: 30vw;
 
-  padding: 1rem;
+  padding-block: 1rem;
+  margin-right: 1rem;
 }
 
 .resultat {
@@ -39,7 +40,6 @@ code {
   place-items: center;
 
   width: 100%;
-  padding-inline: 1rem;
 }
 
 .blokk:not(:last-of-type) {
