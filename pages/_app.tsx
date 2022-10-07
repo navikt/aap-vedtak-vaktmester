@@ -1,4 +1,5 @@
 import "@navikt/ds-css";
+import "@navikt/ds-css-internal";
 import "../styles/index.css";
 import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
