@@ -1,11 +1,13 @@
-import { Heading } from "@navikt/ds-react";
+import { GuidePanel, Heading } from "@navikt/ds-react";
 import { Personer } from "../../src/components/Personer";
 
 const PersonPage = () => {
   return (
     <>
-      <Heading size={"large"}>Funksjoner for alle testpersonene vi har</Heading>
-      <blockquote>
+      <Heading size={"large"} className={"personer__heading"}>
+        Funksjoner for alle testpersonene vi har
+      </Heading>
+      <GuidePanel className={"personer__panel"}>
         Her kan man sende inn testdata for de testpersonene som ligger i Dolly. Det er kun personer i denne listen som
         vi kan garantere at fungerer i systemet. Dette er funksjonene vi tilbyr:
         <ul>
@@ -13,7 +15,7 @@ const PersonPage = () => {
           <li>Ny meldeplikt - Opprett et nytt meldekort for bruker</li>
           <li>Slett søker - Slette søkeren fra systemet så du kan begynne på nytt</li>
         </ul>
-      </blockquote>
+      </GuidePanel>
       <Personer />
     </>
   );

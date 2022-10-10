@@ -59,3 +59,11 @@ code {
   margin-block: 1rem;
   margin-inline: 0.25rem;
 }
+
+.personer__heading {
+  margin-top: 1rem;
+}
+
+.personer__panel {
+  margin-block: 1rem;
+}
