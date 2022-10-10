@@ -2,12 +2,17 @@ import useSWR from "swr";
 import { Button, Loader, Table } from "@navikt/ds-react";
 import { DollyResponse } from "../types/DollyResponse";
 import { NyMeldeplikt } from "./NyMeldeplikt";
+import { CopyToClipboard } from "@navikt/ds-react-internal";
 
 const Personrad = ({ data }: { data: DollyResponse }) => {
   return (
     <>
       <Table.ExpandableRow content={<pre>{JSON.stringify(data)}</pre>}>
-        <Table.DataCell>{data.fødselsnummer}</Table.DataCell>
+        <Table.DataCell>
+          <CopyToClipboard copyText={data.fødselsnummer} popoverText={"Fødselsnummer kopiert!"}>
+            {data.fødselsnummer}
+          </CopyToClipboard>
+        </Table.DataCell>
         <Table.DataCell>{data.navn}</Table.DataCell>
         <Table.DataCell>{data.fødselsdato}</Table.DataCell>
         <Table.DataCell>
