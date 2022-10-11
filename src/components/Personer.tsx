@@ -80,20 +80,18 @@ const Personer = () => {
           <Table.HeaderCell>Fødselsnummer</Table.HeaderCell>
           <Table.HeaderCell>Navn</Table.HeaderCell>
           <Table.HeaderCell>Fødselsdato</Table.HeaderCell>
-          <Table.HeaderCell />
-          <Table.HeaderCell />
-          <Table.HeaderCell />
+          <Table.HeaderCell colSpan={3} />
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {!data && (
           <Table.Row>
-            <Table.DataCell colSpan={2}>Ikkeno data</Table.DataCell>
+            <Table.DataCell colSpan={7}>Ikkeno data</Table.DataCell>
           </Table.Row>
         )}
         {data && data.length === 0 && (
           <Table.Row>
-            <Table.DataCell colSpan={2}>Dolly er tom</Table.DataCell>
+            <Table.DataCell colSpan={7}>Dolly er tom</Table.DataCell>
           </Table.Row>
         )}
         {data && data.map((res: DollyResponse) => <Personrad data={res} key={res.fødselsnummer} />)}

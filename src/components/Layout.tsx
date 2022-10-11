@@ -3,6 +3,7 @@ import { Tabs } from "@navikt/ds-react";
 import { ReactElement } from "react";
 import { Header } from "@navikt/ds-react-internal";
 import { useRouter } from "next/router";
+import { Caseworker, People, Search } from "@navikt/ds-icons";
 
 const Layout = ({ children }: { children: ReactElement }) => {
   const router = useRouter();
@@ -17,8 +18,9 @@ const Layout = ({ children }: { children: ReactElement }) => {
       </Header>
       <Tabs value={router.pathname} size={"small"} onChange={(url) => router.push(url, undefined, { shallow: true })}>
         <Tabs.List>
-          <Tabs.Tab value={"/"} label={"Topic-søk"} />
-          <Tabs.Tab value={"/person"} label={"Testpersoner"} />
+          <Tabs.Tab value={"/"} label={"Topic-søk"} icon={<Search title={"Søk i topics"} />} />
+          <Tabs.Tab value={"/person"} label={"Testpersoner"} icon={<People title={"Testpersoner"} />} />
+          <Tabs.Tab value={"/testbrukere"} label={"Testbrukere"} icon={<Caseworker title={"Testbrukere"} />} />
         </Tabs.List>
         <div className={"appContainer"}>{children}</div>
       </Tabs>
