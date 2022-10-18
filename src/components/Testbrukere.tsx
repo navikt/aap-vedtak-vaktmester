@@ -14,6 +14,12 @@ const testbrukerliste: Brukertype[] = [
   { brukerid: "f_Z994439.e_Z994439@trygdeetaten.no", rolle: "FATTER" },
   { brukerid: "f_Z994524.e_Z994524@trygdeetaten.no", rolle: "BESLUTTER" },
   { brukerid: "f_Z994169.e_Z994169@trygdeetaten.no", rolle: "SAKSBEHANDLER", kommentar: "Fortrolig" },
+  {
+    brukerid: "f_Z990203.e_Z990203@trygdeetaten.no",
+    rolle: "SAKSBEHANDLER og VEILEDER",
+    kommentar: "'alle' nav - kontor",
+  },
+  { brukerid: "f_Z990252.e_Z990252@trygdeetaten.no", rolle: "BESLUTTER og FATTER", kommentar: "'alle' nav - kontor" },
 ];
 
 const TestbrukerRad = ({ brukerid, rolle, kommentar }: Brukertype) => (
