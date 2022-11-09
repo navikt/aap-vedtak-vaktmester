@@ -25,7 +25,7 @@ const testbrukerliste: Brukertype[] = [
 const TestbrukerRad = ({ brukerid, rolle, kommentar }: Brukertype) => (
   <Table.Row>
     <Table.DataCell>
-      <CopyToClipboard copyText={brukerid} popoverText={"Brukerid kopiert!"}>
+      <CopyToClipboard copyText={brukerid} popoverText={"Brukerid kopiert!"} iconPosition={"right"}>
         {brukerid}
       </CopyToClipboard>
     </Table.DataCell>
