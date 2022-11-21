@@ -1,8 +1,6 @@
 ingresses:
   - "https://aap-vaktmester.dev.intern.nav.no"
 env:
-  - name: APP_URL
-    value: "https://aap-vaktmester.dev.intern.nav.no"
   - name: DEVTOOLS_API_URL
     value: "https://aap-devtools.dev.intern.nav.no"
   - name: DEVTOOLS_API_AUDIENCE
