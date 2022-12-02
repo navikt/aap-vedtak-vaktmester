@@ -65,11 +65,34 @@ const NySoeknad = () => {
   };
 
   const postData = (event: React.FormEvent) => {
+    const søknad = {
+      fødselsdato: fdato,
+      innsendingTidspunkt: new Date(),
+      sykepenger: true,
+      ferie: null,
+      studier: { erStudent: null, kommeTilbake: null, vedlegg: [] },
+      medlemsskap: {
+        boddINorgeSammenhengendeSiste5: true,
+        jobbetUtenforNorgeFørSyk: null,
+        jobbetSammenhengendeINorgeSiste5: null,
+        iTilleggArbeidUtenforNorge: null,
+        utenlandsopphold: [],
+      },
+      registrerteBehandlere: [],
+      andreBehandlere: [],
+      yrkesskadeType: "JA",
+      utbetalinger: null,
+      tilleggsopplysninger: null,
+      registrerteBarn: [],
+      andreBarn: [],
+      vedlegg: [],
+    };
+
     event.preventDefault();
     if (validerFelt()) {
       settSenderData(true);
       // @ts-ignore
-      const postBody = JSON.stringify({ fødselsdato: fdatoRef.current.value });
+      const postBody = JSON.stringify(søknad);
       // @ts-ignore
       fetch(`/api/soeknad/${pidRef.current.value}`, {
         method: "POST",
