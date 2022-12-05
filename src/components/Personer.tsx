@@ -34,7 +34,29 @@ const Personrad = ({ data }: { data: DollyResponse }) => {
 };
 
 const sendSøknad = (fnr: string, fdato: string) => {
-  const postBody = JSON.stringify({ fødselsdato: fdato });
+  const søknad = {
+    fødselsdato: fdato,
+    innsendingTidspunkt: new Date(),
+    sykepenger: true,
+    ferie: null,
+    studier: { erStudent: null, kommeTilbake: null, vedlegg: [] },
+    medlemsskap: {
+      boddINorgeSammenhengendeSiste5: true,
+      jobbetUtenforNorgeFørSyk: null,
+      jobbetSammenhengendeINorgeSiste5: null,
+      iTilleggArbeidUtenforNorge: null,
+      utenlandsopphold: [],
+    },
+    registrerteBehandlere: [],
+    andreBehandlere: [],
+    yrkesskadeType: "JA",
+    utbetalinger: null,
+    tilleggsopplysninger: null,
+    registrerteBarn: [],
+    andreBarn: [],
+    vedlegg: [],
+  };
+  const postBody = JSON.stringify(søknad);
   // @ts-ignore
   fetch(`/api/soeknad/${fnr}`, {
     method: "POST",
