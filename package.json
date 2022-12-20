@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@navikt/ds-css": "1.5.4",
-    "@navikt/ds-css-internal": "1.5.4",
-    "@navikt/ds-react": "1.5.4",
-    "@navikt/ds-react-internal": "1.5.4",
+    "@navikt/ds-css": "2.0.10",
+    "@navikt/ds-css-internal": "2.0.10",
+    "@navikt/ds-react": "2.0.10",
+    "@navikt/ds-react-internal": "2.0.10",
     "buffer": "6.0.3",
     "date-fns": "2.29.3",
     "next": "13.0.2",

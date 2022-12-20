@@ -107,38 +107,38 @@
     strict-event-emitter "^0.2.4"
     web-encoding "^1.1.5"
 
-"@navikt/ds-css-internal@1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css-internal/-/ds-css-internal-1.5.4.tgz#428b0585dbb6649689c05af7e39a518987e21d73"
-  integrity sha512-iXjrD2Q2qV1bQr/TQHcELJl8jRbH1weDm70/lNj/VXjb1Bj2lf4+CIK+OrvW3EfYPRr/2zTGMLyJ1jQlKMkF/A==
+"@navikt/ds-css-internal@2.0.10":
+  version "2.0.10"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css-internal/2.0.10/fb4ba9f7a008fbdddf691e62953673a9ae9b588d#fb4ba9f7a008fbdddf691e62953673a9ae9b588d"
+  integrity sha512-sayw3arPH0fphiMls2UOHmFETVAhO74slaGQnJu62vKrgmoQ/ep+ANN6Y2vxPYPGXcucGe3F/l4vwrmsrzuqBg==
 
-"@navikt/ds-css@1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-1.5.4.tgz#6313f0e196f65f276110fc82803e001d4eea4cbd"
-  integrity sha512-uEfBJRwlh7DdPGQAMQogNsnuBFI0OjCOQig7NklYIvSds7kAULruiUpk+R0bUDRl2QBi4/ufhOSLTu47OTsOiQ==
+"@navikt/ds-css@2.0.10":
+  version "2.0.10"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/2.0.10/aa781c5e89f05fba0a325ab7beb68558d60d3a23#aa781c5e89f05fba0a325ab7beb68558d60d3a23"
+  integrity sha512-xFlTsWN4GnWBifOUp3SvA8c8Y6XDrKGHFxFsT+hdOs0i65f1Pa+IVPe3jbf+8rrowrzbuO00hZ3iK7RYpb2yKw==
 
-"@navikt/ds-icons@^1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-1.5.4.tgz#f95ac8bb0c12100e8fc7ab8c2f116655c6c7df2d"
-  integrity sha512-Aet2cGZwmE8pGTWEQb3eTNbMwL+gEVBQy6UhqlqDTjVsgGcRUNJCcVLIH2eGUV1zDhtMFzGU6Bw14Es6KwUHJA==
+"@navikt/ds-icons@^2.0.10":
+  version "2.0.10"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-icons/2.0.10/de484386c4477b6fc4165d05775a43e496491a89#de484386c4477b6fc4165d05775a43e496491a89"
+  integrity sha512-QsBBPEbG7+I1x0nwBcIi6GwRkCi9V+/kcDLO700Sg5qxqu2SPkbhKOsGeZLt17r0GT127aKbbkVoWkw3ZKVUfA==
 
-"@navikt/ds-react-internal@1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react-internal/-/ds-react-internal-1.5.4.tgz#4628caebd3ea51c407aaabd6c96cf591c5758f73"
-  integrity sha512-SQeCUTmaF3ufP7bDBxpmY4JMczmsCN1gRDsRVsb8Q6dPpvpDin5ouCG+/sAsF/4jcNlG6QOFsl7Qo7Jl8anCig==
+"@navikt/ds-react-internal@2.0.10":
+  version "2.0.10"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react-internal/2.0.10/1f72eccb5e16c09b67ef09dce5835887fe486ca9#1f72eccb5e16c09b67ef09dce5835887fe486ca9"
+  integrity sha512-5TEkegbkisOFDQX2QV6jJ2ZsI+wMmdDQAVmfjrDiU+CY9DpUH2Ilnu8+Jcb1ofNdkOtEVZalcK0+xwLKR97rjA==
   dependencies:
-    "@navikt/ds-icons" "^1.5.4"
-    "@navikt/ds-react" "^1.5.4"
+    "@navikt/ds-icons" "^2.0.10"
+    "@navikt/ds-react" "^2.0.10"
     clsx "^1.1.1"
     copy-to-clipboard "^3.3.1"
 
-"@navikt/ds-react@1.5.4", "@navikt/ds-react@^1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-1.5.4.tgz#d9598b79f467fc8846178a421bd2864c44c2795f"
-  integrity sha512-Bz/QZ+yJChhJJjAguYzWeHkRzUuHRIj1N23uBI6vw1AIoDMpMkJ9QQp1ZVnIDeElEwWh4jPh0D7W66yvC1CjJw==
+"@navikt/ds-react@2.0.10", "@navikt/ds-react@^2.0.10":
+  version "2.0.10"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/2.0.10/ed696f9d8e82e1edcd7d2460f3a7b7f094a01eb0#ed696f9d8e82e1edcd7d2460f3a7b7f094a01eb0"
+  integrity sha512-jwzCV1fQ0vgcQRoJtr89JgYTWwF+gtOZ624gPr9kNGpGGlgKmMQyGPBz1JRyiRZOr963IxDSzpRyMQ9Ew0Sy+g==
   dependencies:
     "@floating-ui/react-dom-interactions" "0.9.2"
-    "@navikt/ds-icons" "^1.5.4"
+    "@navikt/ds-icons" "^2.0.10"
     "@radix-ui/react-tabs" "1.0.0"
     "@radix-ui/react-toggle-group" "1.0.0"
     clsx "^1.2.1"
