@@ -1,0 +1,23 @@
+.søkelinje {
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
+  padding-block: 1rem;
+  margin-right: 1rem;
+}
+
+.blokk:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  font-weight: 200;
+}
+
+.resultat {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+}

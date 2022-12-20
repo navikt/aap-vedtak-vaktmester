@@ -26,31 +26,6 @@ code {
   min-width: 100%;
 }
 
-.søkelinje {
-  display: flex;
-  flex-direction: column;
-  width: 30vw;
-
-  padding-block: 1rem;
-  margin-right: 1rem;
-}
-
-.resultat {
-  display: grid;
-  place-items: center;
-
-  width: 100%;
-}
-
-.blokk:not(:last-of-type) {
-  margin-bottom: 1rem;
-}
-
-.timestamp {
-  font-size: 0.9rem;
-  font-weight: 200;
-}
-
 .modal-box {
   min-width: 50vw;
 }

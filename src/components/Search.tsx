@@ -5,6 +5,8 @@ import { TopicResult } from "./TopicResult";
 import { format } from "date-fns";
 import useSWR from "swr";
 
+import styles from "./search.module.css";
+
 const Search = () => {
   const [valgtTopic, settValgtTopic] = useState<string>("");
   const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
@@ -30,17 +32,17 @@ const Search = () => {
 
   return (
     <main>
-      <div className={"søkelinje"}>
-        <div className={"blokk"}>
+      <div className={styles.søkelinje}>
+        <div className={styles.blokk}>
           <Topics velgTopic={velgTopic} />
         </div>
-        <div className={"blokk"}>
+        <div className={styles.blokk}>
           <ToggleGroup onChange={(value) => settSortering(value)} value={sortering} size={"small"}>
             <ToggleGroup.Item value={"LATEST"}>Nyeste</ToggleGroup.Item>
             <ToggleGroup.Item value={"EARLIEST"}>Eldste</ToggleGroup.Item>
           </ToggleGroup>
         </div>
-        <div className={"blokk"}>
+        <div className={styles.blokk}>
           <Button
             variant={"primary"}
             size={"small"}
@@ -51,9 +53,9 @@ const Search = () => {
           </Button>
           {visFeilmelding && <ErrorMessage>Du må velge topic først!</ErrorMessage>}
         </div>
-        <div className={"blokk timestamp"}>Sist oppdatert: {sistOppdatert}</div>
+        <div className={`${styles.blokk} ${styles.timestamp}`}>Sist oppdatert: {sistOppdatert}</div>
       </div>
-      <div className={"resultat"}>
+      <div className={styles.resultat}>
         <TopicResult searchResult={data} isLoading={!data && !error && kanSøke} error={error} />
       </div>
     </main>
