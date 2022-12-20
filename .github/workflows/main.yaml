@@ -14,6 +14,7 @@ jobs:
       - uses: "actions/setup-node@v3"
         with:
           node-version: "16"
+          registry-url: "https://npm.pkg.github.com"
           cache: "yarn"
       - name: "Cache client node_modules"
         id: "cache-node-modules"
