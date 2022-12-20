@@ -31,8 +31,8 @@ jobs:
       - name: "Install dependencies"
         if: "steps.cache-node-modules.outputs.cache-hit != 'true'"
         run: "yarn install --frozen-lockfile"
-#      - name: "client tests"
-#        run: "yarn test"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: "Build client"
         run: "yarn run build"
       - name: "Set up Docker Buildx"
