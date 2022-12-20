@@ -2,8 +2,23 @@
   display: flex;
   flex-direction: column;
   min-width: 15rem;
+
   padding-block: 1rem;
+  padding-right: 1rem;
   margin-right: 1rem;
+
+  position: relative;
+}
+
+.søkelinje::after {
+  content: '';
+  /* full høyde, minus min-height på header, minus min-height på knapp */
+  height: calc(100vh - var(--a-spacing-12) - 32px);
+  border-right: 1px solid #cfcfcf;
+
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .blokk:not(:last-of-type) {
