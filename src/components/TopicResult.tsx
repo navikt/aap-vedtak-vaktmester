@@ -1,10 +1,12 @@
 import { TopicResponse } from "../types/TopicResponse";
-import { Alert, Button, ErrorMessage, Loader, Table } from "@navikt/ds-react";
+import { Alert, BodyShort, Button, ErrorMessage, Loader, Table, TextField } from "@navikt/ds-react";
 import { format } from "date-fns";
 import { Buffer } from "buffer";
 import { Delete } from "@navikt/ds-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SlettModal } from "./SlettModal";
+
+import styles from "./topicResult.module.css";
 
 type TopicResultProps = {
   searchResult: TopicResponse[] | undefined;
@@ -54,44 +56,92 @@ const Rad = ({ data }: { data: TopicResponse }) => {
 };
 
 const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
+  const [filter, setFilter] = useState<string | undefined>(undefined);
+  const [filteredResult, updateFilteredResult] = useState<TopicResponse[] | undefined>(undefined);
+
+  useEffect(() => {
+    if (searchResult) {
+      updateFilteredResult(searchResult);
+    }
+  }, [searchResult]);
+
+  useEffect(() => {
+    if (searchResult && searchResult.length > 0) {
+      if (!filter) {
+        updateFilteredResult(searchResult);
+      } else {
+        updateFilteredResult(searchResult.filter((pr) => pr.key.includes(filter)));
+      }
+    }
+  }, [filter, searchResult]);
+
   if (isLoading) {
     return <Loader size={"2xlarge"} />;
   }
 
   if (error) {
-    return <ErrorMessage>{error.toString()}</ErrorMessage>;
+    return (
+      <ErrorMessage>
+        <BodyShort>{error.toString()}</BodyShort>
+      </ErrorMessage>
+    );
   }
 
+  const søkIkkeUtført = !searchResult;
+  const ingenTreffPåSøk = searchResult && searchResult.length === 0;
+  const ingenTreffPåFilter = searchResult && searchResult.length > 0 && filteredResult?.length === 0;
+
   return (
-    <Table size={"small"}>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell />
-          <Table.HeaderCell>Timestamp</Table.HeaderCell>
-          <Table.HeaderCell>Key</Table.HeaderCell>
-          <Table.HeaderCell>Topic</Table.HeaderCell>
-          <Table.HeaderCell>Partition</Table.HeaderCell>
-          <Table.HeaderCell>Offset</Table.HeaderCell>
-          <Table.HeaderCell>Actions</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {!searchResult && (
+    <>
+      <TextField
+        label={"Filter på key"}
+        onChange={(event) => setFilter(event.target.value)}
+        size={"small"}
+        className={styles.filterInput}
+      />
+      <Table size={"small"}>
+        <Table.Header>
           <Table.Row>
-            <Table.DataCell colSpan={7}>Ingen ting her enda...</Table.DataCell>
+            <Table.HeaderCell />
+            <Table.HeaderCell>Timestamp</Table.HeaderCell>
+            <Table.HeaderCell>Key</Table.HeaderCell>
+            <Table.HeaderCell>Topic</Table.HeaderCell>
+            <Table.HeaderCell>Partition</Table.HeaderCell>
+            <Table.HeaderCell>Offset</Table.HeaderCell>
+            <Table.HeaderCell>Actions</Table.HeaderCell>
           </Table.Row>
-        )}
-        {searchResult && searchResult.length === 0 && (
-          <Table.Row>
-            <Table.DataCell colSpan={7}>
-              <Alert variant={"info"}>Søket returnerte ingen treff</Alert>
-            </Table.DataCell>
-          </Table.Row>
-        )}
-        {searchResult &&
-          searchResult.map((res: TopicResponse) => <Rad data={res} key={res.timestamp + res.key + res.partition} />)}
-      </Table.Body>
-    </Table>
+        </Table.Header>
+        <Table.Body>
+          {søkIkkeUtført && (
+            <Table.Row>
+              <Table.DataCell colSpan={7}>
+                <BodyShort>Ingen ting her enda...</BodyShort>
+              </Table.DataCell>
+            </Table.Row>
+          )}
+          {ingenTreffPåSøk && (
+            <Table.Row>
+              <Table.DataCell colSpan={7}>
+                <Alert variant={"info"}>
+                  <BodyShort>Søket returnerte ingen treff</BodyShort>
+                </Alert>
+              </Table.DataCell>
+            </Table.Row>
+          )}
+          {ingenTreffPåFilter && (
+            <Table.Row>
+              <Table.DataCell colSpan={7}>
+                <BodyShort>Ingen treff på filter</BodyShort>
+              </Table.DataCell>
+            </Table.Row>
+          )}
+          {filteredResult &&
+            filteredResult.map((res: TopicResponse) => (
+              <Rad data={res} key={res.timestamp + res.key + res.partition} />
+            ))}
+        </Table.Body>
+      </Table>
+    </>
   );
 };
 
