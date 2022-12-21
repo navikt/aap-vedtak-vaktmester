@@ -3,7 +3,7 @@ import { Alert, BodyShort, Button, ErrorMessage, Loader, Table, TextField } from
 import { format } from "date-fns";
 import { Buffer } from "buffer";
 import { Delete } from "@navikt/ds-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SlettModal } from "../SlettModal";
 
 import styles from "./topicResult.module.css";
@@ -56,24 +56,7 @@ const Rad = ({ data }: { data: TopicResponse }) => {
 };
 
 const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
-  const [filter, setFilter] = useState<string | undefined>(undefined);
-  const [filteredResult, updateFilteredResult] = useState<TopicResponse[] | undefined>(undefined);
-
-  useEffect(() => {
-    if (searchResult) {
-      updateFilteredResult(searchResult);
-    }
-  }, [searchResult]);
-
-  useEffect(() => {
-    if (searchResult && searchResult.length > 0) {
-      if (!filter) {
-        updateFilteredResult(searchResult);
-      } else {
-        updateFilteredResult(searchResult.filter((pr) => pr.key.includes(filter)));
-      }
-    }
-  }, [filter, searchResult]);
+  const [filter, setFilter] = useState<string>("");
 
   if (isLoading) {
     return <Loader size={"2xlarge"} />;
@@ -86,6 +69,8 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
       </ErrorMessage>
     );
   }
+
+  const filteredResult = searchResult?.filter((pr) => pr.key.includes(filter));
 
   const søkIkkeUtført = !searchResult;
   const ingenTreffPåSøk = searchResult && searchResult.length === 0;
