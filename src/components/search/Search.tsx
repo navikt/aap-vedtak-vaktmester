@@ -1,7 +1,7 @@
-import { Topics } from "./Topics";
+import { Topics } from "../Topics";
 import { Button, ErrorMessage, ToggleGroup } from "@navikt/ds-react";
 import { useState } from "react";
-import { TopicResult } from "./TopicResult";
+import { TopicResult } from "../topicresult/TopicResult";
 import { format } from "date-fns";
 import useSWR from "swr";
 
@@ -14,7 +14,9 @@ const Search = () => {
   const [sistOppdatert, settSistOppdatert] = useState<string>("Never!");
 
   const kanSøke = valgtTopic !== "" && valgtTopic !== undefined;
-  const { data, error, mutate } = useSWR(kanSøke ? `/api/topic/${valgtTopic}/${sortering}` : null);
+  const { data, error, mutate } = useSWR(kanSøke ? `/api/topic/${valgtTopic}/${sortering}` : null, {
+    revalidateOnFocus: false,
+  });
 
   const velgTopic = (topic: string) => {
     settValgtTopic(topic);
@@ -55,9 +57,7 @@ const Search = () => {
         </div>
         <div className={`${styles.blokk} ${styles.timestamp}`}>Sist oppdatert: {sistOppdatert}</div>
       </div>
-      <div className={styles.resultat}>
-        <TopicResult searchResult={data} isLoading={!data && !error && kanSøke} error={error} />
-      </div>
+      <TopicResult searchResult={data} isLoading={!data && !error && kanSøke} error={error} />
     </main>
   );
 };

@@ -1,10 +1,10 @@
-import { TopicResponse } from "../types/TopicResponse";
+import { TopicResponse } from "../../types/TopicResponse";
 import { Alert, BodyShort, Button, ErrorMessage, Loader, Table, TextField } from "@navikt/ds-react";
 import { format } from "date-fns";
 import { Buffer } from "buffer";
 import { Delete } from "@navikt/ds-icons";
 import { useEffect, useState } from "react";
-import { SlettModal } from "./SlettModal";
+import { SlettModal } from "../SlettModal";
 
 import styles from "./topicResult.module.css";
 
@@ -92,7 +92,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   const ingenTreffPåFilter = searchResult && searchResult.length > 0 && filteredResult?.length === 0;
 
   return (
-    <>
+    <div className={styles.resultat}>
       <TextField
         label={"Filter på key"}
         onChange={(event) => setFilter(event.target.value)}
@@ -141,7 +141,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
             ))}
         </Table.Body>
       </Table>
-    </>
+    </div>
   );
 };
 
