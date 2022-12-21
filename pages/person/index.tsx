@@ -1,5 +1,5 @@
 import { GuidePanel, Heading } from "@navikt/ds-react";
-import { Personer } from "../../src/components/Personer";
+import { Testpersoner } from "../../src/components/testpersoner/Testpersoner";
 
 const PersonPage = () => {
   return (
@@ -16,7 +16,7 @@ const PersonPage = () => {
           <li>Slett søker - Slette søkeren fra systemet så du kan begynne på nytt</li>
         </ul>
       </GuidePanel>
-      <Personer />
+      <Testpersoner />
     </>
   );
 };

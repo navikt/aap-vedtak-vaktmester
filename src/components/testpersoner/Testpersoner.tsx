@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { Button, Loader, Table } from "@navikt/ds-react";
-import { DollyResponse } from "../types/DollyResponse";
-import { NyMeldeplikt } from "./NyMeldeplikt";
+import { DollyResponse } from "../../types/DollyResponse";
+import { NyMeldeplikt } from "../NyMeldeplikt";
 import { CopyToClipboard } from "@navikt/ds-react-internal";
 
 const Personrad = ({ data }: { data: DollyResponse }) => {
@@ -82,7 +82,7 @@ const slettSøker = (fnr: string) => {
   });
 };
 
-const Personer = () => {
+const Testpersoner = () => {
   const { data, error } = useSWR<DollyResponse[]>("/api/dolly");
 
   if (!data && !error) {
@@ -122,4 +122,4 @@ const Personer = () => {
   );
 };
 
-export { Personer };
+export { Testpersoner };
