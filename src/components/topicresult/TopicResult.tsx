@@ -70,7 +70,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
     );
   }
 
-  const filteredResult = searchResult?.filter((pr) => pr.key.includes(filter));
+  const filteredResult = searchResult?.filter((topicResponse) => topicResponse.key.includes(filter));
 
   const søkIkkeUtført = !searchResult;
   const ingenTreffPåSøk = searchResult && searchResult.length === 0;
