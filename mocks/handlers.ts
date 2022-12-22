@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { TopicResponse } from "../src/types/TopicResponse";
-import {DollyResponse} from "../src/types/DollyResponse";
+import { DollyResponse } from "../src/types/DollyResponse";
 
 const soekereResponse: TopicResponse[] = [
   {
@@ -83,11 +83,12 @@ const dollyResponse: DollyResponse[] = [
   {
     fødselsnummer: "12345678910",
     navn: "Spesielt Skap",
-    fødselsdato: "1975-01-01"
-  },{
+    fødselsdato: "1975-01-01",
+  },
+  {
     fødselsnummer: "12345678911",
     navn: "Utadvendt Utvikler",
-    fødselsdato: "1980-05-06"
+    fødselsdato: "1980-05-06",
   },
 ];
 
