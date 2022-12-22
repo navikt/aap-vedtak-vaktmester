@@ -1,8 +1,9 @@
 import useSWR from "swr";
-import { BodyShort, Button, Loader, Table } from "@navikt/ds-react";
+import { BodyShort, Button, Loader, Table, TextField } from "@navikt/ds-react";
 import { DollyResponse } from "../../types/DollyResponse";
 import { NyMeldeplikt } from "../NyMeldeplikt";
 import { CopyToClipboard } from "@navikt/ds-react-internal";
+import { useState } from "react";
 
 const Personrad = ({ data }: { data: DollyResponse }) => {
   return (
@@ -84,6 +85,7 @@ const slettSøker = (fnr: string) => {
 
 const Testpersoner = () => {
   const { data, error } = useSWR<DollyResponse[]>("/api/dolly");
+  const [filter, setFilter] = useState<string>("");
 
   if (!data && !error) {
     return <Loader title={"Henter fra Dolly"} />;
@@ -93,36 +95,55 @@ const Testpersoner = () => {
     console.error(error);
     return <BodyShort>Klarte ikke å hente personer.</BodyShort>;
   }
+  const filtered = data?.filter((testperson) => testperson.fødselsnummer.includes(filter));
+
+  const søkIkkeUtført = !data;
+  const ingenTreffPåSøk = data && data.length === 0;
+  const ingenTreffPåFilter = data && data.length > 0 && filtered?.length === 0;
 
   return (
-    <Table size={"small"}>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell />
-          <Table.HeaderCell>Fødselsnummer</Table.HeaderCell>
-          <Table.HeaderCell>Navn</Table.HeaderCell>
-          <Table.HeaderCell>Fødselsdato</Table.HeaderCell>
-          <Table.HeaderCell colSpan={3} />
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {!data && (
+    <>
+      <TextField
+        label={"Filtrer på fødselsnummer"}
+        size={"small"}
+        onChange={(event) => setFilter(event.target.value)}
+      />
+      <Table size={"small"}>
+        <Table.Header>
           <Table.Row>
-            <Table.DataCell colSpan={7}>
-              <BodyShort>Ikkeno data</BodyShort>
-            </Table.DataCell>
+            <Table.HeaderCell />
+            <Table.HeaderCell>Fødselsnummer</Table.HeaderCell>
+            <Table.HeaderCell>Navn</Table.HeaderCell>
+            <Table.HeaderCell>Fødselsdato</Table.HeaderCell>
+            <Table.HeaderCell colSpan={3} />
           </Table.Row>
-        )}
-        {data && data.length === 0 && (
-          <Table.Row>
-            <Table.DataCell colSpan={7}>
-              <BodyShort>Dolly er tom</BodyShort>
-            </Table.DataCell>
-          </Table.Row>
-        )}
-        {data && data.map((res: DollyResponse) => <Personrad data={res} key={res.fødselsnummer} />)}
-      </Table.Body>
-    </Table>
+        </Table.Header>
+        <Table.Body>
+          {søkIkkeUtført && (
+            <Table.Row>
+              <Table.DataCell colSpan={7}>
+                <BodyShort>Ikkeno data</BodyShort>
+              </Table.DataCell>
+            </Table.Row>
+          )}
+          {ingenTreffPåSøk && (
+            <Table.Row>
+              <Table.DataCell colSpan={7}>
+                <BodyShort>Dolly er tom</BodyShort>
+              </Table.DataCell>
+            </Table.Row>
+          )}
+          {ingenTreffPåFilter && (
+            <Table.Row>
+              <Table.DataCell colSpan={7}>
+                <BodyShort>Filteret ga ingen treff</BodyShort>
+              </Table.DataCell>
+            </Table.Row>
+          )}
+          {filtered && filtered.map((res: DollyResponse) => <Personrad data={res} key={res.fødselsnummer} />)}
+        </Table.Body>
+      </Table>
+    </>
   );
 };
 
