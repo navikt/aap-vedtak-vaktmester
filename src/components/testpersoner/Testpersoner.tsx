@@ -95,7 +95,10 @@ const Testpersoner = () => {
     console.error(error);
     return <BodyShort>Klarte ikke å hente personer.</BodyShort>;
   }
-  const filtered = data?.filter((testperson) => testperson.fødselsnummer.includes(filter));
+  const filtered = data?.filter(
+    (testperson) =>
+      testperson.fødselsnummer.includes(filter) || testperson.navn.toLowerCase().includes(filter.toLowerCase())
+  );
 
   const søkIkkeUtført = !data;
   const ingenTreffPåSøk = data && data.length === 0;
@@ -104,7 +107,7 @@ const Testpersoner = () => {
   return (
     <>
       <TextField
-        label={"Filtrer på fødselsnummer"}
+        label={"Filtrer på fødselsnummer eller navn"}
         size={"small"}
         onChange={(event) => setFilter(event.target.value)}
       />
