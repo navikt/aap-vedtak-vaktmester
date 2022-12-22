@@ -3,7 +3,7 @@ import { Testpersoner } from "./Testpersoner";
 import { server } from "../../../mocks/server";
 import { rest } from "msw";
 import { DollyResponse } from "../../types/DollyResponse";
-import { SWRWrapper } from "../test/SWRWrapper";
+import { renderWithSWR } from "../test/renderWithSWR";
 
 describe("Testpersoner", () => {
   test("viser laster-animasjon når vi laster data", () => {
@@ -21,11 +21,7 @@ describe("Testpersoner", () => {
     ];
     server.use(rest.get("/api/dolly", (req, res, ctx) => res(ctx.status(200), ctx.json(dollyResponse))));
 
-    render(
-      <SWRWrapper>
-        <Testpersoner />
-      </SWRWrapper>
-    );
+    renderWithSWR(<Testpersoner />);
     const lasterElement = screen.getByText("Henter fra Dolly");
     expect(lasterElement).toBeInTheDocument();
     await waitForElementToBeRemoved(lasterElement);
@@ -37,11 +33,7 @@ describe("Testpersoner", () => {
 
   test("viser melding når svaret ikke inneholder noen personer", async () => {
     server.use(rest.get("/api/dolly", (req, res, ctx) => res(ctx.status(200), ctx.json([]))));
-    render(
-      <SWRWrapper>
-        <Testpersoner />
-      </SWRWrapper>
-    );
+    renderWithSWR(<Testpersoner />);
     await waitForElementToBeRemoved(screen.getByText("Henter fra Dolly"));
     expect(screen.getByText(/^Dolly er tom$/)).toBeVisible();
   });
@@ -49,11 +41,7 @@ describe("Testpersoner", () => {
   test("viser feilmelding når søket feiler", async () => {
     server.use(rest.get("/api/dolly", (req, res) => res.networkError("Internal server error")));
     console.error = jest.fn();
-    render(
-      <SWRWrapper>
-        <Testpersoner />
-      </SWRWrapper>
-    );
+    renderWithSWR(<Testpersoner />);
     await waitForElementToBeRemoved(screen.getByText("Henter fra Dolly"));
     expect(screen.getByText("Klarte ikke å hente personer.")).toBeVisible();
     expect(console.error).toHaveBeenCalledTimes(1);
