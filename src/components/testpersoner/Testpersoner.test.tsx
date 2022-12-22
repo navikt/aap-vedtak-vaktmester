@@ -1,10 +1,9 @@
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { Testpersoner } from "./Testpersoner";
-import { SWRConfig } from "swr";
-import fetch from "cross-fetch";
-export const fetcher = (url: string) => {
-  return fetch("http://localhost:3000" + url, { method: "GET", credentials: "include" }).then((res) => res.json());
-};
+import { server } from "../../../mocks/server";
+import { rest } from "msw";
+import { DollyResponse } from "../../types/DollyResponse";
+import { SWRWrapper } from "../test/SWRWrapper";
 
 describe("Testpersoner", () => {
   test("viser laster-animasjon når vi laster data", () => {
@@ -14,13 +13,24 @@ describe("Testpersoner", () => {
 
   test("viser tabell med data", async () => {
     render(
-      <SWRConfig value={{ provider: () => new Map(), fetcher: fetcher, dedupingInterval: 0 }}>
+      <SWRWrapper>
         <Testpersoner />
-      </SWRConfig>
+      </SWRWrapper>
     );
+    const dollyResponse: DollyResponse[] = [
+      {
+        fødselsdato: "1987-09-17",
+        navn: "Flagrende Katt",
+        fødselsnummer: "17098700000",
+      },
+    ];
+    server.use(rest.get("/api/dolly", (req, res, ctx) => res(ctx.status(200), ctx.json(dollyResponse))));
     const lasterElement = screen.getByText("Henter fra Dolly");
     expect(lasterElement).toBeInTheDocument();
     await waitForElementToBeRemoved(lasterElement);
-    expect(screen.getByText("Fødselsnummer")).toBeVisible();
+    expect(screen.getByRole("columnheader", { name: /Fødselsnummer/ })).toBeVisible();
+    expect(screen.getByRole("columnheader", { name: /Navn/ })).toBeVisible();
+    expect(screen.getByRole("columnheader", { name: /Fødselsdato/ })).toBeVisible();
+    expect(screen.getByRole("cell", { name: dollyResponse[0].navn })).toBeVisible();
   });
 });
