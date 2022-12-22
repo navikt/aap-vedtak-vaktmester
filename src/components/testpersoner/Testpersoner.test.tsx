@@ -12,11 +12,6 @@ describe("Testpersoner", () => {
   });
 
   test("viser tabell med data", async () => {
-    render(
-      <SWRWrapper>
-        <Testpersoner />
-      </SWRWrapper>
-    );
     const dollyResponse: DollyResponse[] = [
       {
         fødselsdato: "1987-09-17",
@@ -25,6 +20,12 @@ describe("Testpersoner", () => {
       },
     ];
     server.use(rest.get("/api/dolly", (req, res, ctx) => res(ctx.status(200), ctx.json(dollyResponse))));
+
+    render(
+      <SWRWrapper>
+        <Testpersoner />
+      </SWRWrapper>
+    );
     const lasterElement = screen.getByText("Henter fra Dolly");
     expect(lasterElement).toBeInTheDocument();
     await waitForElementToBeRemoved(lasterElement);
@@ -32,5 +33,29 @@ describe("Testpersoner", () => {
     expect(screen.getByRole("columnheader", { name: /Navn/ })).toBeVisible();
     expect(screen.getByRole("columnheader", { name: /Fødselsdato/ })).toBeVisible();
     expect(screen.getByRole("cell", { name: dollyResponse[0].navn })).toBeVisible();
+  });
+
+  test("viser melding når svaret ikke inneholder noen personer", async () => {
+    server.use(rest.get("/api/dolly", (req, res, ctx) => res(ctx.status(200), ctx.json([]))));
+    render(
+      <SWRWrapper>
+        <Testpersoner />
+      </SWRWrapper>
+    );
+    await waitForElementToBeRemoved(screen.getByText("Henter fra Dolly"));
+    expect(screen.getByText(/^Dolly er tom$/)).toBeVisible();
+  });
+
+  test("viser feilmelding når søket feiler", async () => {
+    server.use(rest.get("/api/dolly", (req, res) => res.networkError("Internal server error")));
+    console.error = jest.fn();
+    render(
+      <SWRWrapper>
+        <Testpersoner />
+      </SWRWrapper>
+    );
+    await waitForElementToBeRemoved(screen.getByText("Henter fra Dolly"));
+    expect(screen.getByText("Klarte ikke å hente personer.")).toBeVisible();
+    expect(console.error).toHaveBeenCalledTimes(1);
   });
 });
