@@ -77,7 +77,7 @@ describe("Testpersoner", () => {
       expect(filterInput).toHaveValue("1709");
     });
 
-    test("filtrerer listen over testpersoner", async () => {
+    test("filtrerer listen over testpersoner på fødselsnummer", async () => {
       server.use(rest.get("/api/dolly", (req, res, ctx) => res(ctx.status(200), ctx.json(testpersoner))));
       renderWithSWR(<Testpersoner />);
       await waitForElementToBeRemoved(screen.getByText("Henter fra Dolly"));
@@ -87,7 +87,10 @@ describe("Testpersoner", () => {
       const filterInput = screen.getByRole("textbox", { name: /Filtrer på fødselsnummer/ });
       await user.type(filterInput, "1709");
       // 1 rad + 1 for header
+      expect(screen.queryByText("Filteret ga ingen treff")).not.toBeInTheDocument();
       expect(screen.getAllByRole("row")).toHaveLength(1 + 1);
+      expect(screen.getByText(testpersoner[0].navn)).toBeVisible();
+      expect(screen.queryByText(testpersoner[1].navn)).not.toBeInTheDocument();
     });
   });
 });
