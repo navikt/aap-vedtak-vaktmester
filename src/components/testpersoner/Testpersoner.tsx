@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Button, Loader, Table } from "@navikt/ds-react";
+import { BodyShort, Button, Loader, Table } from "@navikt/ds-react";
 import { DollyResponse } from "../../types/DollyResponse";
 import { NyMeldeplikt } from "../NyMeldeplikt";
 import { CopyToClipboard } from "@navikt/ds-react-internal";
@@ -21,7 +21,7 @@ const Personrad = ({ data }: { data: DollyResponse }) => {
           </Button>
         </Table.DataCell>
         <Table.DataCell>
-          <NyMeldeplikt personident={data.fødselsnummer} />{" "}
+          <NyMeldeplikt personident={data.fødselsnummer} />
         </Table.DataCell>
         <Table.DataCell>
           <Button variant={"danger"} size={"small"} onClick={() => slettSøker(data.fødselsnummer)}>
@@ -91,7 +91,7 @@ const Testpersoner = () => {
 
   if (error) {
     console.error(error);
-    return <div>Klarte ikke å hente personer.</div>;
+    return <BodyShort>Klarte ikke å hente personer.</BodyShort>;
   }
 
   return (
@@ -108,12 +108,16 @@ const Testpersoner = () => {
       <Table.Body>
         {!data && (
           <Table.Row>
-            <Table.DataCell colSpan={7}>Ikkeno data</Table.DataCell>
+            <Table.DataCell colSpan={7}>
+              <BodyShort>Ikkeno data</BodyShort>
+            </Table.DataCell>
           </Table.Row>
         )}
         {data && data.length === 0 && (
           <Table.Row>
-            <Table.DataCell colSpan={7}>Dolly er tom</Table.DataCell>
+            <Table.DataCell colSpan={7}>
+              <BodyShort>Dolly er tom</BodyShort>
+            </Table.DataCell>
           </Table.Row>
         )}
         {data && data.map((res: DollyResponse) => <Personrad data={res} key={res.fødselsnummer} />)}
