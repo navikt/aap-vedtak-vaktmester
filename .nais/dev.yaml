@@ -1,5 +1,5 @@
 ingresses:
-  - "https://aap-vaktmester.dev.intern.nav.no"
+  - "https://aap-vaktmester.intern.dev.nav.no"
 env:
   - name: DEVTOOLS_API_URL
     value: "https://aap-devtools.dev.intern.nav.no"
