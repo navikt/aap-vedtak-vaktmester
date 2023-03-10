@@ -125,7 +125,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
           )}
           {sortedAndFilteredResult &&
             sortedAndFilteredResult.map((res: TopicResponse) => (
-              <Rad data={res} key={res.timestamp + res.key + res.partition} />
+              <Rad data={res} key={res.timestamp + res.key + res.partition + res.topic + res.offset} />
             ))}
         </Table.Body>
       </Table>
