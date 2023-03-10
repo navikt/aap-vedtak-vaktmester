@@ -7,6 +7,7 @@ import { useState } from "react";
 import { SlettModal } from "../SlettModal";
 
 import styles from "./topicResult.module.css";
+import {sortData, useHandleSort} from "./TopicResultUtil";
 
 type TopicResultProps = {
   searchResult: TopicResponse[] | undefined;
@@ -57,6 +58,7 @@ const Rad = ({ data }: { data: TopicResponse }) => {
 
 const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   const [filter, setFilter] = useState<string>("");
+  const {sort, handleSort} = useHandleSort();
 
   if (isLoading) {
     return <Loader size={"2xlarge"} />;
@@ -71,6 +73,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   }
 
   const filteredResult = searchResult?.filter((topicResponse) => topicResponse.key.includes(filter));
+  const sortedResult = sortData(filteredResult, sort);
 
   const søkIkkeUtført = !searchResult;
   const ingenTreffPåSøk = searchResult && searchResult.length === 0;
@@ -84,16 +87,16 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
         size={"small"}
         className={styles.filterInput}
       />
-      <Table size={"small"}>
+      <Table size={"small"} sort={sort} onSortChange={(sortKey) => handleSort(sortKey)}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell />
-            <Table.HeaderCell>Timestamp</Table.HeaderCell>
-            <Table.HeaderCell>Key</Table.HeaderCell>
-            <Table.HeaderCell>Topic</Table.HeaderCell>
-            <Table.HeaderCell>Partition</Table.HeaderCell>
-            <Table.HeaderCell>Offset</Table.HeaderCell>
-            <Table.HeaderCell>Actions</Table.HeaderCell>
+            <Table.ColumnHeader sortKey={'timestamp'} sortable>Timestamp</Table.ColumnHeader>
+            <Table.ColumnHeader>Key</Table.ColumnHeader>
+            <Table.ColumnHeader>Topic</Table.ColumnHeader>
+            <Table.ColumnHeader>Partition</Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'offset'} sortable>Offset</Table.ColumnHeader>
+            <Table.ColumnHeader>Actions</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -120,8 +123,8 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
               </Table.DataCell>
             </Table.Row>
           )}
-          {filteredResult &&
-            filteredResult.map((res: TopicResponse) => (
+          {sortedResult &&
+            sortedResult.map((res: TopicResponse) => (
               <Rad data={res} key={res.timestamp + res.key + res.partition} />
             ))}
         </Table.Body>
