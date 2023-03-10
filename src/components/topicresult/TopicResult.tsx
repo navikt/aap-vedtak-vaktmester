@@ -73,11 +73,11 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   }
 
   const filteredResult = searchResult?.filter((topicResponse) => topicResponse.key.includes(filter));
-  const sortedResult = sortData(filteredResult, sort);
+  const sortedAndFilteredResult = sortData(filteredResult, sort);
 
   const søkIkkeUtført = !searchResult;
   const ingenTreffPåSøk = searchResult && searchResult.length === 0;
-  const ingenTreffPåFilter = searchResult && searchResult.length > 0 && filteredResult?.length === 0;
+  const ingenTreffPåFilter = searchResult && searchResult.length > 0 && sortedAndFilteredResult?.length === 0;
 
   return (
     <div className={styles.resultat}>
@@ -123,8 +123,8 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
               </Table.DataCell>
             </Table.Row>
           )}
-          {sortedResult &&
-            sortedResult.map((res: TopicResponse) => (
+          {sortedAndFilteredResult &&
+            sortedAndFilteredResult.map((res: TopicResponse) => (
               <Rad data={res} key={res.timestamp + res.key + res.partition} />
             ))}
         </Table.Body>
