@@ -705,6 +705,11 @@
     strict-event-emitter "^0.2.4"
     web-encoding "^1.1.5"
 
+"@navikt/aksel-icons@^2.7.7":
+  version "2.7.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/2.7.7/0b919767a47b3f367b55a08d1b5eeee29cbb56f6#0b919767a47b3f367b55a08d1b5eeee29cbb56f6"
+  integrity sha512-9nE3gXM2+3+mNubAaqHSrEof0IQGdnD7Ti8JDWzLdOZ9XR9rv2H8VIPKs86nWRP6gukdiVHh7+PodptNK2B4wA==
+
 "@navikt/ds-css-internal@^2.7.7":
   version "2.7.7"
   resolved "https://npm.pkg.github.com/download/@navikt/ds-css-internal/2.7.7/a4dc313c8706269d99c432f916ac88205ec1e9e3#a4dc313c8706269d99c432f916ac88205ec1e9e3"

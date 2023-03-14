@@ -1,0 +1,27 @@
+.topicSearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topicButtons, .refresh, .loader {
+  margin-top: 1rem;
+}
+
+.topicButtons {
+  width: 100%;
+}
+
+.topicButton {
+  padding: 1rem;
+  border: none;
+  background-color: transparent;
+  color: hsl(0 0% 0%);
+  cursor: pointer;
+  border-bottom: 1px solid hsl(0 0% 0%);
+}
+
+.topicButton.selected {
+  background-color: var(--a-surface-action);
+  color: hsl(0 100% 100%);
+}
