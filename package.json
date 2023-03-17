@@ -10,11 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@navikt/aksel-icons": "^2.7.7",
-    "@navikt/ds-css": "^2.7.7",
-    "@navikt/ds-css-internal": "^2.7.7",
-    "@navikt/ds-react": "^2.7.7",
-    "@navikt/ds-react-internal": "^2.7.7",
+    "@navikt/aksel-icons": "^2.7.8",
+    "@navikt/ds-css": "^2.7.8",
+    "@navikt/ds-css-internal": "^2.7.8",
+    "@navikt/ds-react": "^2.7.8",
+    "@navikt/ds-react-internal": "^2.7.8",
     "buffer": "6.0.3",
     "date-fns": "2.29.3",
     "next": "^13.2.4",
