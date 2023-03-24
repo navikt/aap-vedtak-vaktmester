@@ -6,6 +6,8 @@ import { SWRConfig } from "swr";
 import { Modal } from "@navikt/ds-react";
 import { useEffect, useState } from "react";
 import { Layout } from "../src/components/Layout";
+import { ErrorBoundary } from "react-error-boundary";
+import { Feilviser } from "../src/components/Feilviser";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -49,7 +51,9 @@ export default function App({ Component, pageProps }: AppProps) {
       }}
     >
       <Layout>
-        <Component {...pageProps} />
+        <ErrorBoundary FallbackComponent={Feilviser}>
+          <Component {...pageProps} />
+        </ErrorBoundary>
       </Layout>
     </SWRConfig>
   );

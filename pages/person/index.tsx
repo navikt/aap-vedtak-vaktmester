@@ -1,9 +1,22 @@
 import { GuidePanel, Heading } from "@navikt/ds-react";
 import { Testpersoner } from "../../src/components/testpersoner/Testpersoner";
+import { ErrorBoundary } from "react-error-boundary";
+import React from "react";
+import { Feilviser } from "../../src/components/Feilviser";
+
+function feilRender({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: Function }) {
+  return (
+    <Feilviser
+      error={error}
+      resetErrorBoundary={resetErrorBoundary}
+      feiltekst={"Noe gikk galt med spørringen mot Dolly"}
+    />
+  );
+}
 
 const PersonPage = () => {
   return (
-    <>
+    <ErrorBoundary fallbackRender={feilRender}>
       <Heading size={"large"} className={"personer__heading"}>
         Funksjoner for alle testpersonene vi har
       </Heading>
@@ -17,7 +30,7 @@ const PersonPage = () => {
         </ul>
       </GuidePanel>
       <Testpersoner />
-    </>
+    </ErrorBoundary>
   );
 };
 
