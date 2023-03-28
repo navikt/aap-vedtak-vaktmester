@@ -5,7 +5,7 @@ import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { Modal } from "@navikt/ds-react";
 import { useEffect, useState } from "react";
-import { Layout } from "../src/components/Layout";
+import { Layout } from "../src/components/layout/Layout";
 import { ErrorBoundary } from "react-error-boundary";
 import { Feilviser } from "../src/components/Feilviser";
 

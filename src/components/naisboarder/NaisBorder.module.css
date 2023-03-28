@@ -1,0 +1,28 @@
+.naisBorder {
+  height: 4px;
+  width: 100vw;
+  overflow: hidden;
+  background-image: linear-gradient(
+    145deg,
+    #e30303 1%,
+    #fe8b00 3%,
+    #feec00 5%,
+    #008026 7%,
+    #004dfe 9%,
+    #750786 11%,
+    #c8accc 13%,
+    transparent 20%
+  );
+  background-size: 200%;
+  background-position: 100%;
+  animation: 350ms slide ease-out forwards;
+}
+
+@keyframes slide {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
+}

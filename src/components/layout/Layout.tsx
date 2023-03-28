@@ -1,24 +1,30 @@
-import Head from "next/head";
 import { Tabs } from "@navikt/ds-react";
 import { ReactElement } from "react";
-import { Header } from "@navikt/ds-react-internal";
 import { useRouter } from "next/router";
 import { Caseworker, People, Search } from "@navikt/ds-icons";
 
-import styles from './Layout.module.css';
+import Head from "next/head";
+import { VaktmesterHeader } from "../vaktmesterheader/VaktmesterHeader";
+import { NaisBorder } from "../naisboarder/NaisBorder";
 
-const NaisBorder = () => (<div className={styles.naisBorder} />);
-const Layout = ({ children }: { children: ReactElement }) => {
+interface Props {
+  children: ReactElement;
+}
+
+const Layout = (props: Props) => {
+  const { children } = props;
   const router = useRouter();
+
   return (
     <>
       <Head>
         <title>AAP Vedtak Vaktmester</title>
-        <link rel="fav icon" href="/favicon-16x16.png" />
+        <link
+          rel="fav icon"
+          href="/Users/thomasrognes/Documents/Kildekode/aap-vedtak-vaktmester/public/favicon-16x16.png"
+        />
       </Head>
-      <Header>
-        <Header.Title href={"/"}>AAP Vedtak Vaktmester</Header.Title>
-      </Header>
+      <VaktmesterHeader />
       <NaisBorder />
       <Tabs value={router.pathname} size={"small"} onChange={(url) => router.push(url, undefined, { shallow: true })}>
         <Tabs.List>
@@ -26,8 +32,8 @@ const Layout = ({ children }: { children: ReactElement }) => {
           <Tabs.Tab value={"/person"} label={"Testpersoner"} icon={<People title={"Testpersoner"} />} />
           <Tabs.Tab value={"/testbrukere"} label={"Testbrukere"} icon={<Caseworker title={"Testbrukere"} />} />
         </Tabs.List>
-        <div className={"appContainer"}>{children}</div>
       </Tabs>
+      <div className={"appContainer"}>{children}</div>
     </>
   );
 };
