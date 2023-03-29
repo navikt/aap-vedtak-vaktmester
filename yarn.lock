@@ -705,43 +705,44 @@
     strict-event-emitter "^0.2.4"
     web-encoding "^1.1.5"
 
-"@navikt/aksel-icons@^2.7.8":
-  version "2.7.8"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/2.7.8/d7540c31ce0ef3c3f87783363df1c92b46f46f79#d7540c31ce0ef3c3f87783363df1c92b46f46f79"
-  integrity sha512-sAAG12COjekQSVzsPeRLF40Tg540sX4Tr2nNnJpgZao06gqjn0KdvVj2H7Fwgw6manIQpNkIw9CQN+6QAFbkQA==
+"@navikt/aksel-icons@^2.8.7":
+  version "2.8.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/2.8.7/6796a4694e6addae001d719bfb25862c51fb0210#6796a4694e6addae001d719bfb25862c51fb0210"
+  integrity sha512-jXEL1wv03dKIZLFispMF71fiEKxUjNpHc4Ap/HB30sckzPB6rYmyqkXrm2rWIaPgA2V2fBWgfizsvx0oD7dx4g==
 
-"@navikt/ds-css-internal@^2.7.8":
-  version "2.7.8"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-css-internal/2.7.8/97ce84e1552f731929ea8513e05110874f9b81d8#97ce84e1552f731929ea8513e05110874f9b81d8"
-  integrity sha512-JiUQpVCZUznSGt08XOI1TGMVIwAJ0G3DD2FS6KpyW8DboNSbK0oYVQNPPldTjZ0K1Phzl1CTRL43Ag8byyBCtg==
+"@navikt/ds-css-internal@^2.8.7":
+  version "2.8.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css-internal/2.8.7/d45b4df0a93c90d2103adba88093a52bef357222#d45b4df0a93c90d2103adba88093a52bef357222"
+  integrity sha512-qjVVkng4qHordtexkVCa5tlfMbF85UTghKBLhUlbvQCN0BnAYfKKY93qR/B+K/bN8MDYMwTboQlMbB+sRlrUeQ==
 
-"@navikt/ds-css@^2.7.8":
-  version "2.7.8"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/2.7.8/8a310077aa78f1f92bcf574e9523e62ddb4d167a#8a310077aa78f1f92bcf574e9523e62ddb4d167a"
-  integrity sha512-rGKXgzEGMn5tdHc1mNnMImJc4CC9ox5lucJn/m6dXcfs026e1IED3mi+pBCKbgtM3EHhS3zGXQwrgf9R1m+skQ==
+"@navikt/ds-css@^2.8.7":
+  version "2.8.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/2.8.7/0691111c18488cfb9122aa34d0bee48567b8ba30#0691111c18488cfb9122aa34d0bee48567b8ba30"
+  integrity sha512-WcDcKZ7C2zqnIox/nxaIYcvA+QIu3S/IUJ8d0crjT+tzjQ3wYywBY0e++YXBoXOK93KxPE5eMY2MhPJPnPtImA==
 
-"@navikt/ds-icons@^2.7.8":
-  version "2.7.8"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-icons/2.7.8/8fca6f5fcd6ab40d3a715dd51a0fafe071f59832#8fca6f5fcd6ab40d3a715dd51a0fafe071f59832"
-  integrity sha512-jBXDzkpyfKkqnqWDRiu7VNDTCe/bJWiG1Evmng/M1DmGFQiGiOA6ogvjp0lCIQ0+p7umOGb7ycX0kNUb1XS9vw==
+"@navikt/ds-icons@^2.8.7":
+  version "2.8.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-icons/2.8.7/2603ad8b6723622a9c8c0e4c576fd252b5d2702c#2603ad8b6723622a9c8c0e4c576fd252b5d2702c"
+  integrity sha512-GjkGqD/eBBWr0bwSDZ63CfPCEyohqLI6d0MBpu6vSTTkJ5do6KguSqDWwFk/PBm4z8hCkEOrx3fj467i5zhn1g==
 
-"@navikt/ds-react-internal@^2.7.8":
-  version "2.7.8"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-react-internal/2.7.8/ffab5d61647ebef37344bdee71c9ee967c7544b2#ffab5d61647ebef37344bdee71c9ee967c7544b2"
-  integrity sha512-DlzF179FAyymOpJ7wKen/Py0RScMaNze7aSsAgclP/FQQQXlkYX/CVhJkWC78t+pIS4A/af1Y67nJFgTmCBk9A==
+"@navikt/ds-react-internal@^2.8.7":
+  version "2.8.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react-internal/2.8.7/abf08466478d95388dc55dc6b3220486b38e3e07#abf08466478d95388dc55dc6b3220486b38e3e07"
+  integrity sha512-p9mZNHkFxLW8hBo/+fiU5iBDAbbGs9QIqIg8f5T+aIyIFKiSQOBfbmzqwDS6C2QlhmIv3sPLjOuyp+TB5JNWXQ==
   dependencies:
-    "@navikt/ds-icons" "^2.7.8"
-    "@navikt/ds-react" "^2.7.8"
+    "@navikt/ds-icons" "^2.8.7"
+    "@navikt/ds-react" "^2.8.7"
     clsx "^1.1.1"
     copy-to-clipboard "^3.3.1"
 
-"@navikt/ds-react@^2.7.8":
-  version "2.7.8"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/2.7.8/d3781613e9a695bd7443d47a78ce6bd7ab258e86#d3781613e9a695bd7443d47a78ce6bd7ab258e86"
-  integrity sha512-23Km0dIXKOqX3z4DdtqB2STROYGuOBm0qBE3sZEFFW6HxzadhACC9AkHp7mWx8FX62GuopLT64OVBlyothIdVw==
+"@navikt/ds-react@^2.8.7":
+  version "2.8.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/2.8.7/19d9d4acbdd93e94d26bd3ef9f1b6e062d46059a#19d9d4acbdd93e94d26bd3ef9f1b6e062d46059a"
+  integrity sha512-qSmyBc5rXqeyv0iqM7hnN24EPWAaY4OgS7qLlHbW+A50vWJCHg+oWuZlcvJZemqjTgfIOdplQbPsleYbOVlLqg==
   dependencies:
     "@floating-ui/react" "0.17.0"
-    "@navikt/ds-icons" "^2.7.8"
+    "@navikt/aksel-icons" "^2.8.7"
+    "@navikt/ds-icons" "^2.8.7"
     "@radix-ui/react-tabs" "1.0.0"
     "@radix-ui/react-toggle-group" "1.0.0"
     clsx "^1.2.1"
