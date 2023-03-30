@@ -1,9 +1,2 @@
 ingresses:
   - "https://aap-vaktmester.intern.dev.nav.no"
-env:
-  - name: DEVTOOLS_API_URL
-    value: "https://aap-devtools.dev.intern.nav.no"
-  - name: DEVTOOLS_API_AUDIENCE
-    value: "dev-gcp:aap:devtools"
-  - name: DEVTOOLS_API_SCOPE
-    value: "api://dev-gcp.aap.devtools/.default"
