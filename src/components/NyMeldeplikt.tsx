@@ -1,13 +1,14 @@
-import { RefObject, useRef, useState } from "react";
-import { Alert, Button, Heading, Modal, TextField } from "@navikt/ds-react";
-import { useDisclosure } from "../hooks/useDisclosure";
-import { format } from "date-fns";
+import { Alert, Button, Heading, Modal, TextField } from '@navikt/ds-react';
+import { format } from 'date-fns';
+import { RefObject, useRef, useState } from 'react';
+
+import { useDisclosure } from '../hooks/useDisclosure';
 
 const harVerdi = (input: string) => {
   if (input === undefined || input === null) {
     return false;
   }
-  return !(input === "" || input.trim() === "");
+  return !(input === '' || input.trim() === '');
 };
 
 const NyMeldeplikt = ({ personident }: { personident: string }) => {
@@ -15,20 +16,20 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
   const tildatoRef = useRef<HTMLInputElement>(null);
   const [fradatoError, settFraDatoError] = useState<string | undefined>(undefined);
   const [tildatoError, settTilDatoError] = useState<string | undefined>(undefined);
-  const [fradato, settFraDato] = useState<string>("");
-  const [tildato, settTilDato] = useState<string>("");
+  const [fradato, settFraDato] = useState<string>('');
+  const [tildato, settTilDato] = useState<string>('');
   const [status, settStatus] = useState<{ status: string; message: string } | undefined>(undefined);
   const [senderData, settSenderData] = useState<boolean>(false);
 
   const validerDato = (datoRef: RefObject<HTMLInputElement>) => {
     if (!datoRef.current) {
-      return "Mangler input-felt";
+      return 'Mangler input-felt';
     }
     if (!harVerdi(datoRef.current.value)) {
-      return "Du må legge inn en dato.";
+      return 'Du må legge inn en dato.';
     }
     if (datoRef.current.value.length !== 10) {
-      return "Dato har ugyldig lengde.";
+      return 'Dato har ugyldig lengde.';
     }
     const datoString = datoRef.current.value;
     const gyldigDato = Date.parse(datoString);
@@ -81,7 +82,7 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
       const datoer = getDateArray(fraDato, tilDato);
 
       const data = datoer.map((dato) => ({
-        dato: format(dato, "yyyy-MM-dd"),
+        dato: format(dato, 'yyyy-MM-dd'),
         arbeidstimer: 0,
         fraværsdag: false,
       }));
@@ -89,25 +90,25 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
       const postBody = JSON.stringify({ aktivitetPerDag: data });
       // @ts-ignore
       fetch(`/api/meldeplikt/${personident}`, {
-        method: "POST",
+        method: 'POST',
         body: postBody,
       }).then((res) => {
         if (res.ok) {
-          settStatus({ status: "ok", message: "Meldeplikt opprettet!" });
+          settStatus({ status: 'ok', message: 'Meldeplikt opprettet!' });
         } else {
-          settStatus({ status: "not_ok", message: "Noe feilet: " + res.statusText });
+          settStatus({ status: 'not_ok', message: 'Noe feilet: ' + res.statusText });
         }
         settSenderData(false);
       });
     } else {
-      console.log("Skjema inneholder feil.");
+      console.log('Skjema inneholder feil.');
     }
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure(false);
   return (
     <>
-      <Button variant={"secondary"} size={"small"} onClick={onOpen}>
+      <Button variant={'secondary'} size={'small'} onClick={onOpen}>
         Ny meldeplikt
       </Button>
       <Modal
@@ -118,17 +119,17 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
         }}
         shouldCloseOnOverlayClick={false}
         closeButton={true}
-        className={"modal-box"}
+        className={'modal-box'}
       >
         <Modal.Content>
-          <Heading level={"1"} spacing size={"large"}>
+          <Heading level={'1'} spacing size={'large'}>
             Opprett ny meldeplikt for {personident}
           </Heading>
           <form onSubmit={(event: React.FormEvent) => postData(event)}>
             <TextField
               ref={fradatoRef}
-              label={"Fra (åååå-mm-dd)"}
-              autoComplete={"off"}
+              label={'Fra (åååå-mm-dd)'}
+              autoComplete={'off'}
               error={fradatoError}
               onChange={(event) => {
                 settFraDato(event.target.value);
@@ -138,8 +139,8 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
             />
             <TextField
               ref={tildatoRef}
-              label={"Til (åååå-mm-dd)"}
-              autoComplete={"off"}
+              label={'Til (åååå-mm-dd)'}
+              autoComplete={'off'}
               error={tildatoError}
               onChange={(event) => {
                 settTilDato(event.target.value);
@@ -147,12 +148,12 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
               }}
               value={tildato}
             />
-            <div className={"knapperad"}>
-              <Button variant={"primary"} loading={senderData}>
+            <div className={'knapperad'}>
+              <Button variant={'primary'} loading={senderData}>
                 Opprett meldeplikt
               </Button>
             </div>
-            {status && <Alert variant={status.status === "ok" ? "success" : "warning"}>{status.message}</Alert>}
+            {status && <Alert variant={status.status === 'ok' ? 'success' : 'warning'}>{status.message}</Alert>}
           </form>
         </Modal.Content>
       </Modal>

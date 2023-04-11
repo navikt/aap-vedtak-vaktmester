@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { SortState } from '@navikt/ds-react';
-import {TopicResponse} from "../../types/TopicResponse";
+import { useState } from 'react';
+
+import { TopicResponse } from '../../types/TopicResponse';
 
 const useHandleSort = () => {
   const [sort, setSort] = useState<SortState | undefined>(undefined);
@@ -10,10 +11,10 @@ const useHandleSort = () => {
         sort && sortKey === sort.orderBy && sort.direction === 'descending'
           ? undefined
           : {
-            orderBy: sortKey,
-            direction:
-              sort && sortKey === sort.orderBy && sort.direction === 'ascending' ? 'descending' : 'ascending',
-          }
+              orderBy: sortKey,
+              direction:
+                sort && sortKey === sort.orderBy && sort.direction === 'ascending' ? 'descending' : 'ascending',
+            }
       );
     }
   };

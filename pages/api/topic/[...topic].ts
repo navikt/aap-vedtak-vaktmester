@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
-    res.status(405).json({ message: "Ugyldig metode" });
+  if (req.method !== 'GET') {
+    res.status(405).json({ message: 'Ugyldig metode' });
     return;
   }
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     const { topic } = req.query;
     if (!topic || topic.length != 2) {
-      res.status(400).json({ message: "Ugyldig antall parametre" });
+      res.status(400).json({ message: 'Ugyldig antall parametre' });
       return;
     }
 

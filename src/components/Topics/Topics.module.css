@@ -4,7 +4,9 @@
   align-items: center;
 }
 
-.topicButtons, .refresh, .loader {
+.topicButtons,
+.refresh,
+.loader {
   margin-top: 1rem;
 }
 

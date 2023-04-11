@@ -1,4 +1,4 @@
-import { Search } from "../src/components/search/Search";
+import { Search } from '../src/components/search/Search';
 
 const Homepage = () => {
   return (

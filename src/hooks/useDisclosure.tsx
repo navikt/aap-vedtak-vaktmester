@@ -1,5 +1,5 @@
 // https://blogg.bekk.no/kaptein-krok-%EF%B8%8F-usedisclosure-5654962b3ad2
-import { useState, useCallback } from "react";
+import { useCallback, useState } from 'react';
 
 export const useDisclosure = (defaultOpen: false) => {
   const [isOpen, setOpen] = useState<boolean>(defaultOpen);

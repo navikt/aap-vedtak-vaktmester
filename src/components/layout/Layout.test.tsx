@@ -1,14 +1,15 @@
-import { render, screen } from "@testing-library/react";
-import { Layout } from "./Layout";
+import { render, screen } from '@testing-library/react';
 
-describe("Layout", () => {
-  test("Tegner appen", () => {
+import { Layout } from './Layout';
+
+describe('Layout', () => {
+  test('Tegner appen', () => {
     render(
       <Layout>
         <div>Innhold</div>
       </Layout>
     );
-    expect(screen.getByRole("link", { name: /AAP Vedtak Vaktmester/ })).toBeVisible();
-    expect(screen.getByText("Innhold")).toBeVisible();
+    expect(screen.getByRole('link', { name: /AAP Vedtak Vaktmester/ })).toBeVisible();
+    expect(screen.getByText('Innhold')).toBeVisible();
   });
 });

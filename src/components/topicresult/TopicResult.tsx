@@ -1,13 +1,13 @@
-import { TopicResponse } from "../../types/TopicResponse";
-import { Alert, BodyShort, Button, ErrorMessage, Loader, Table, TextField } from "@navikt/ds-react";
-import { format } from "date-fns";
-import { Buffer } from "buffer";
-import { Delete } from "@navikt/ds-icons";
-import { useState } from "react";
-import { SlettModal } from "../SlettModal";
+import { Delete } from '@navikt/ds-icons';
+import { Alert, BodyShort, Button, ErrorMessage, Loader, Table, TextField } from '@navikt/ds-react';
+import { Buffer } from 'buffer';
+import { format } from 'date-fns';
+import { useState } from 'react';
 
-import styles from "./topicResult.module.css";
-import {sortData, useHandleSort} from "./TopicResultUtil";
+import { TopicResponse } from '../../types/TopicResponse';
+import { SlettModal } from '../SlettModal';
+import { sortData, useHandleSort } from './TopicResultUtil';
+import styles from './topicResult.module.css';
 
 type TopicResultProps = {
   searchResult: TopicResponse[] | undefined;
@@ -20,14 +20,14 @@ const Rad = ({ data }: { data: TopicResponse }) => {
   const dato = new Date(data.timestamp);
   const parseJSON = () => {
     if (!data.value) {
-      return "No JSON here...";
+      return 'No JSON here...';
     }
     try {
-      const buf = Buffer.from(data.value, "base64");
+      const buf = Buffer.from(data.value, 'base64');
       const jsonString = JSON.parse(buf.toString());
       return JSON.stringify(jsonString, null, 2);
     } catch (error) {
-      console.error("Klarte ikke å parse json. " + error);
+      console.error('Klarte ikke å parse json. ' + error);
       console.error(data.value);
     }
   };
@@ -35,16 +35,16 @@ const Rad = ({ data }: { data: TopicResponse }) => {
   return (
     <>
       <Table.ExpandableRow content={<pre>{parseJSON()}</pre>}>
-        <Table.DataCell>{format(dato, "dd.MM.yyyy HH:mm:ss.SSS")}</Table.DataCell>
+        <Table.DataCell>{format(dato, 'dd.MM.yyyy HH:mm:ss.SSS')}</Table.DataCell>
         <Table.DataCell>{data.key}</Table.DataCell>
         <Table.DataCell>{data.topic}</Table.DataCell>
         <Table.DataCell>{data.partition}</Table.DataCell>
         <Table.DataCell>{data.offset}</Table.DataCell>
         <Table.DataCell>
           <Button
-            variant={"tertiary"}
-            title={"Slett søknad og søker"}
-            type={"button"}
+            variant={'tertiary'}
+            title={'Slett søknad og søker'}
+            type={'button'}
             onClick={() => settVisModal(true)}
           >
             <Delete />
@@ -57,11 +57,11 @@ const Rad = ({ data }: { data: TopicResponse }) => {
 };
 
 const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
-  const [filter, setFilter] = useState<string>("");
-  const {sort, handleSort} = useHandleSort();
+  const [filter, setFilter] = useState<string>('');
+  const { sort, handleSort } = useHandleSort();
 
   if (isLoading) {
-    return <Loader size={"2xlarge"} />;
+    return <Loader size={'2xlarge'} />;
   }
 
   if (error) {
@@ -82,20 +82,24 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
   return (
     <div className={styles.resultat}>
       <TextField
-        label={"Filter på key"}
+        label={'Filter på key'}
         onChange={(event) => setFilter(event.target.value)}
-        size={"small"}
+        size={'small'}
         className={styles.filterInput}
       />
-      <Table size={"small"} sort={sort} onSortChange={(sortKey) => handleSort(sortKey)}>
+      <Table size={'small'} sort={sort} onSortChange={(sortKey) => handleSort(sortKey)}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell />
-            <Table.ColumnHeader sortKey={'timestamp'} sortable>Timestamp</Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'timestamp'} sortable>
+              Timestamp
+            </Table.ColumnHeader>
             <Table.ColumnHeader>Key</Table.ColumnHeader>
             <Table.ColumnHeader>Topic</Table.ColumnHeader>
             <Table.ColumnHeader>Partition</Table.ColumnHeader>
-            <Table.ColumnHeader sortKey={'offset'} sortable>Offset</Table.ColumnHeader>
+            <Table.ColumnHeader sortKey={'offset'} sortable>
+              Offset
+            </Table.ColumnHeader>
             <Table.ColumnHeader>Actions</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
@@ -110,7 +114,7 @@ const TopicResult = ({ searchResult, isLoading, error }: TopicResultProps) => {
           {ingenTreffPåSøk && (
             <Table.Row>
               <Table.DataCell colSpan={7}>
-                <Alert variant={"info"}>
+                <Alert variant={'info'}>
                   <BodyShort>Søket returnerte ingen treff</BodyShort>
                 </Alert>
               </Table.DataCell>

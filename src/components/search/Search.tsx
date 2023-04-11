@@ -1,15 +1,15 @@
-import { Topics } from "../Topics";
-import { useState } from "react";
-import { TopicResult } from "../topicresult/TopicResult";
-import useSWR from "swr";
+import { useState } from 'react';
+import useSWR from 'swr';
 
-import styles from "./search.module.css";
+import { Topics } from '../Topics';
+import { TopicResult } from '../topicresult/TopicResult';
+import styles from './search.module.css';
 
 const Search = () => {
-  const [valgtTopic, settValgtTopic] = useState<string>("");
+  const [valgtTopic, settValgtTopic] = useState<string>('');
   const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
 
-  const kanSøke = valgtTopic !== "" && valgtTopic !== undefined;
+  const kanSøke = valgtTopic !== '' && valgtTopic !== undefined;
   const { data, error } = useSWR(kanSøke ? `/api/topic/${valgtTopic}/LATEST` : null, {
     revalidateOnFocus: false,
   });

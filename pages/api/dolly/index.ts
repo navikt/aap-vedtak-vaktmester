@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
-    res.status(405).json({ message: "Ugyldig metode" });
+  if (req.method !== 'GET') {
+    res.status(405).json({ message: 'Ugyldig metode' });
   }
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     try {
       const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/dolly`);
       if (result.ok) {

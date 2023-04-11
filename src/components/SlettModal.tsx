@@ -1,5 +1,5 @@
-import { Alert, BodyShort, Button, Heading, Modal } from "@navikt/ds-react";
-import { useState } from "react";
+import { Alert, BodyShort, Button, Heading, Modal } from '@navikt/ds-react';
+import { useState } from 'react';
 
 type ModalProps = {
   pid: string;
@@ -23,11 +23,11 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
   const slettSøker = () => {
     settSletterSøker(true);
     fetch(`/api/soeker/${pid}`, {
-      method: "DELETE",
+      method: 'DELETE',
     }).then((res) => {
       if (res.ok) {
         settSøkerSlettet(true);
-        settStatusmelding("Søker slettet!");
+        settStatusmelding('Søker slettet!');
       } else {
         settFeilmelding(`Feil ved sletting av søker: ${res.status} ${res.statusText}`);
       }
@@ -38,11 +38,11 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
   const slettMottaker = () => {
     settSletterMottaker(true);
     fetch(`/api/mottaker/${pid}`, {
-      method: "DELETE",
+      method: 'DELETE',
     }).then((res) => {
       if (res.ok) {
         settMottakerSlettet(true);
-        settStatusmelding("Mottaker slettet!");
+        settStatusmelding('Mottaker slettet!');
       } else {
         settFeilmelding(`Feil ved sletting av søker: ${res.status} ${res.statusText}`);
       }
@@ -53,11 +53,11 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
   const slettSøknad = () => {
     settSletterSøknad(true);
     fetch(`/api/soeknad/${pid}`, {
-      method: "DELETE",
+      method: 'DELETE',
     }).then((res) => {
       if (res.ok) {
         settSøknadSlettet(true);
-        settStatusmelding("Søknad slettet!");
+        settStatusmelding('Søknad slettet!');
       } else {
         settFeilmelding(`Feil ved sletting av søknad: ${res.status} ${res.statusText}`);
       }
@@ -66,17 +66,17 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
   };
 
   return (
-    <Modal open={vis} onClose={() => lukk()} className={"modal-box"}>
+    <Modal open={vis} onClose={() => lukk()} className={'modal-box'}>
       <Modal.Content>
-        <Heading level={"1"} spacing size={"large"}>
+        <Heading level={'1'} spacing size={'large'}>
           Sletting av data
         </Heading>
         <BodyShort>Key: {pid}</BodyShort>
-        <Alert variant={"warning"}>Dette kan du angre på, men du kan ikke gjøre noe med det</Alert>
-        <div className={"knapperad"}>
+        <Alert variant={'warning'}>Dette kan du angre på, men du kan ikke gjøre noe med det</Alert>
+        <div className={'knapperad'}>
           <Button
-            variant={"secondary"}
-            size={"small"}
+            variant={'secondary'}
+            size={'small'}
             onClick={() => slettSøker()}
             disabled={søkerSlettet}
             loading={sletterSøker}
@@ -84,8 +84,8 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
             Slett søker
           </Button>
           <Button
-            variant={"secondary"}
-            size={"small"}
+            variant={'secondary'}
+            size={'small'}
             onClick={() => slettMottaker()}
             disabled={mottakerSlettet}
             loading={sletterMottaker}
@@ -93,8 +93,8 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
             Slett mottaker
           </Button>
           <Button
-            variant={"secondary"}
-            size={"small"}
+            variant={'secondary'}
+            size={'small'}
             onClick={() => slettSøknad()}
             disabled={søknadSlettet}
             loading={sletterSøknad}
@@ -102,8 +102,8 @@ const SlettModal = ({ pid, vis, lukk }: ModalProps) => {
             Slett søknad
           </Button>
         </div>
-        {statusmelding && <Alert variant={"success"}>{statusmelding}</Alert>}
-        {feilmelding && <Alert variant={"error"}>{feilmelding}</Alert>}
+        {statusmelding && <Alert variant={'success'}>{statusmelding}</Alert>}
+        {feilmelding && <Alert variant={'error'}>{feilmelding}</Alert>}
       </Modal.Content>
     </Modal>
   );

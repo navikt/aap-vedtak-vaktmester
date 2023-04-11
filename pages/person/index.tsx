@@ -1,15 +1,16 @@
-import { GuidePanel, Heading } from "@navikt/ds-react";
-import { Testpersoner } from "../../src/components/testpersoner/Testpersoner";
-import { ErrorBoundary } from "react-error-boundary";
-import React from "react";
-import { Feilviser } from "../../src/components/Feilviser";
+import { GuidePanel, Heading } from '@navikt/ds-react';
+import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import { Feilviser } from '../../src/components/Feilviser';
+import { Testpersoner } from '../../src/components/testpersoner/Testpersoner';
 
 function feilRender({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: Function }) {
   return (
     <Feilviser
       error={error}
       resetErrorBoundary={resetErrorBoundary}
-      feiltekst={"Noe gikk galt med spørringen mot Dolly"}
+      feiltekst={'Noe gikk galt med spørringen mot Dolly'}
     />
   );
 }
@@ -17,10 +18,10 @@ function feilRender({ error, resetErrorBoundary }: { error: Error; resetErrorBou
 const PersonPage = () => {
   return (
     <ErrorBoundary fallbackRender={feilRender}>
-      <Heading size={"large"} className={"personer__heading"}>
+      <Heading size={'large'} className={'personer__heading'}>
         Funksjoner for alle testpersonene vi har
       </Heading>
-      <GuidePanel className={"personer__panel"}>
+      <GuidePanel className={'personer__panel'}>
         Her kan man sende inn testdata for de testpersonene som ligger i Dolly. Det er kun personer i denne listen som
         vi kan garantere at fungerer i systemet. Dette er funksjonene vi tilbyr:
         <ul>

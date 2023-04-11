@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "POST") {
-    res.status(405).json({ message: "Ugyldig metode" });
+  if (req.method !== 'POST') {
+    res.status(405).json({ message: 'Ugyldig metode' });
   }
   const { pid } = req.query;
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     try {
       const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/meldeplikt/${pid}`, {
-        method: "POST",
+        method: 'POST',
         body: req.body,
       });
       if (result.ok) {

@@ -1,11 +1,11 @@
-import { Tabs } from "@navikt/ds-react";
-import { ReactElement } from "react";
-import { useRouter } from "next/router";
-import { Caseworker, People, Search } from "@navikt/ds-icons";
+import { Caseworker, People, Search } from '@navikt/ds-icons';
+import { Tabs } from '@navikt/ds-react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { ReactElement } from 'react';
 
-import Head from "next/head";
-import { VaktmesterHeader } from "../vaktmesterheader/VaktmesterHeader";
-import { NaisBorder } from "../naisboarder/NaisBorder";
+import { NaisBorder } from '../naisboarder/NaisBorder';
+import { VaktmesterHeader } from '../vaktmesterheader/VaktmesterHeader';
 
 interface Props {
   children: ReactElement;
@@ -26,14 +26,14 @@ const Layout = (props: Props) => {
       </Head>
       <VaktmesterHeader />
       <NaisBorder />
-      <Tabs value={router.pathname} size={"small"} onChange={(url) => router.push(url, undefined, { shallow: true })}>
+      <Tabs value={router.pathname} size={'small'} onChange={(url) => router.push(url, undefined, { shallow: true })}>
         <Tabs.List>
-          <Tabs.Tab value={"/"} label={"Topic-søk"} icon={<Search title={"Søk i topics"} />} />
-          <Tabs.Tab value={"/person"} label={"Testpersoner"} icon={<People title={"Testpersoner"} />} />
-          <Tabs.Tab value={"/testbrukere"} label={"Testbrukere"} icon={<Caseworker title={"Testbrukere"} />} />
+          <Tabs.Tab value={'/'} label={'Topic-søk'} icon={<Search title={'Søk i topics'} />} />
+          <Tabs.Tab value={'/person'} label={'Testpersoner'} icon={<People title={'Testpersoner'} />} />
+          <Tabs.Tab value={'/testbrukere'} label={'Testbrukere'} icon={<Caseworker title={'Testbrukere'} />} />
         </Tabs.List>
       </Tabs>
-      <div className={"appContainer"}>{children}</div>
+      <div className={'appContainer'}>{children}</div>
     </>
   );
 };
