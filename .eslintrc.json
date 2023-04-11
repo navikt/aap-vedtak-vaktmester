@@ -1,3 +1,3 @@
 {
-  "extends": "@navikt/eslint-config-aap"
+  "extends": ["@navikt/eslint-config-aap", "next"]
 }
