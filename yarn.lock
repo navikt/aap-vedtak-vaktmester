@@ -792,10 +792,10 @@
     strict-event-emitter "^0.2.4"
     web-encoding "^1.1.5"
 
-"@navikt/aap-felles-prettier@0.0.60":
-  version "0.0.60"
-  resolved "https://npm.pkg.github.com/download/@navikt/aap-felles-prettier/0.0.60/c04b2fcfddc3443bf1fdb0b46e0cc67b99635986#c04b2fcfddc3443bf1fdb0b46e0cc67b99635986"
-  integrity sha512-JwZj1gDRMsijWP+0YuRQEC4IijaGA822VEmqnQGAdhPYsZJaMifycsd8P6m0OyKtxC3J24/0CtJwRloKwkLW8w==
+"@navikt/aap-felles-prettier@^0.0.64":
+  version "0.0.64"
+  resolved "https://npm.pkg.github.com/download/@navikt/aap-felles-prettier/0.0.64/7f61ab745900d9224caa43b1db71d6307bb2d2c7#7f61ab745900d9224caa43b1db71d6307bb2d2c7"
+  integrity sha512-m+iQp783JrrnzKJ4HKblAbMZLY76AqeByiMZKQ4rcjlAsnwa6B5AvvEP0qEVko0b8pMSh3LT2mKS+TqzJcfaDg==
   dependencies:
     "@trivago/prettier-plugin-sort-imports" "^4.1.1"
     prettier "^2.8.7"
@@ -845,10 +845,10 @@
     react-day-picker "8.3.4"
     react-modal "3.15.1"
 
-"@navikt/eslint-config-aap@0.0.60":
-  version "0.0.60"
-  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-aap/0.0.60/ebbe352d7ce45ee08baa804cdbef6722065bf4d9#ebbe352d7ce45ee08baa804cdbef6722065bf4d9"
-  integrity sha512-JjxwxCZvE+JtzrotXtuD+QTLqdePs2lbKNyHGy1ApfDV7/Px5jbbZTWjrduSd++huQ/E/YN/TBPE7s10odKlBQ==
+"@navikt/eslint-config-aap@^0.0.64":
+  version "0.0.64"
+  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-aap/0.0.64/5ef1477275ac1733c42205c2483329f6c699d73f#5ef1477275ac1733c42205c2483329f6c699d73f"
+  integrity sha512-4F4X7+K3pVbw9eA0MBzsvk2/aTPB+Kf+LHOAvkolD2j/4blxZ9fCMq/MoUfg4TsIXr3b2AhLEGUbVpqGjvxXwA==
 
 "@next/env@13.3.1":
   version "13.3.1"
