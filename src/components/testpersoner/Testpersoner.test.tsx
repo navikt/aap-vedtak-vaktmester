@@ -4,7 +4,7 @@ import { rest } from 'msw';
 
 import { server } from '../../../mocks/server';
 import { DollyResponse } from '../../types/DollyResponse';
-import { renderWithSWR } from '../test/renderWithSWR';
+import { renderWithSWR } from '../../test/renderWithSWR';
 import { Testpersoner } from './Testpersoner';
 
 const testpersoner: DollyResponse[] = [
