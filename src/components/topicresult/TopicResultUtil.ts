@@ -4,18 +4,21 @@ import { useState } from 'react';
 import { TopicResponse } from '../../types/TopicResponse';
 
 const useHandleSort = () => {
-  const [sort, setSort] = useState<SortState | undefined>(undefined);
+  const [sort, setSort] = useState<SortState>({ orderBy: '', direction: 'ascending' });
   const handleSort = (sortKey: string | undefined) => {
     if (sortKey) {
-      setSort(
-        sort && sortKey === sort.orderBy && sort.direction === 'descending'
-          ? undefined
-          : {
-              orderBy: sortKey,
-              direction:
-                sort && sortKey === sort.orderBy && sort.direction === 'ascending' ? 'descending' : 'ascending',
-            }
-      );
+      setSort((prevSort) => {
+        if (prevSort.orderBy === sortKey) {
+          return {
+            ...prevSort,
+            direction: prevSort.direction === 'ascending' ? 'descending' : 'ascending',
+          };
+        }
+        return {
+          orderBy: sortKey,
+          direction: 'ascending',
+        };
+      });
     }
   };
   return { sort, handleSort };

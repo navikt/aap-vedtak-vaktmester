@@ -1,6 +1,5 @@
 import { Delete } from '@navikt/ds-icons';
 import { Alert, BodyShort, Button, ErrorMessage, Loader, Table, TextField } from '@navikt/ds-react';
-import { Buffer } from 'buffer';
 import { format } from 'date-fns';
 import { useState } from 'react';
 
@@ -10,7 +9,7 @@ import { sortData, useHandleSort } from './TopicResultUtil';
 import styles from './topicResult.module.css';
 
 type TopicResultProps = {
-  searchResult: TopicResponse[] | undefined;
+  searchResult: TopicResponse[];
   isLoading: boolean;
   error: Object;
 };
