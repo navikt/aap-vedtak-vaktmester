@@ -19,10 +19,7 @@ const Layout = (props: Props) => {
     <>
       <Head>
         <title>AAP Vedtak Vaktmester</title>
-        <link
-          rel="fav icon"
-          href="/Users/thomasrognes/Documents/Kildekode/aap-vedtak-vaktmester/public/favicon-16x16.png"
-        />
+        <link rel="fav icon" href="/favicon-16x16.png" />
       </Head>
       <VaktmesterHeader />
       <NaisBorder />
