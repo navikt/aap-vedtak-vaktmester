@@ -1,6 +1,6 @@
 import { Alert, Button, Heading, Modal, TextField } from '@navikt/ds-react';
 import { format } from 'date-fns';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import { useDisclosure } from '../hooks/useDisclosure';
 import { getDateArray, validerDato } from '../lib/dates';
@@ -25,7 +25,7 @@ const NyMeldeplikt = ({ personident }: { personident: string }) => {
     }
   };
 
-  const postData = (event) => {
+  const postData = (event: FormEvent) => {
     event.preventDefault();
     if (validerFelt()) {
       settSenderData(true);
